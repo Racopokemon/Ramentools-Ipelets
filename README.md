@@ -12,3 +12,4 @@ Future work
 - Make text centered by default
 - `Ctrl+D` Duplicates at cursor (like paste at cursor)
 - Multiple shortcuts possible
+- Grid size 8 by start, instead of 16
