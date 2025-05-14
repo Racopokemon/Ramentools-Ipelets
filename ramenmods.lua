@@ -110,8 +110,8 @@ methods = {
 }
 
 -- assigning shortcuts for us:
-shortcuts.ipelet_1_ramenmods = "Ctrl+Down"
-shortcuts.ipelet_2_ramenmods = "Ctrl+Up"
+shortcuts.ipelet_1_ramenmods = "Ctrl+Shift+Down"
+shortcuts.ipelet_2_ramenmods = "Ctrl+Shift+Up"
 
 shortcuts.ipelet_3_ramenmods = "Up"
 shortcuts.ipelet_4_ramenmods = "Down"
@@ -130,4 +130,13 @@ shortcuts.duplicate = "Ctrl+D"
 shortcuts.ungroup = "Ctrl+Shift+G"
 shortcuts.copy_page = nil --used to be ctrl+shift+c and v
 shortcuts.paste_page = nil
-shortcuts.new_window = "Ctrl+Shift+N"
+shortcuts.new_window = "Ctrl+N"
+
+----
+
+prefs.initial.grid_size = 8
+-- Attributes set when Ipe starts
+--prefs.initial_attributes.farrowsize = "small"
+--prefs.initial_attributes.rarrowsize = "small"
+--prefs.initial_attributes.horizontalalignment = "center"
+--prefs.initial_attributes.verticalalignment = "center"
