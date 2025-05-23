@@ -53,6 +53,7 @@ end
 -- copypasta end
     
 -- copypasta from ipelet move.lua, but better grid size
+revertOriginal = _G.revertOriginal
 function mov(model, num)
   local p = model:page()
   if not p:hasSelection() then
