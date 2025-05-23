@@ -136,6 +136,8 @@ shortcuts.new_window = "Ctrl+N"
 ----
 
 prefs.initial.grid_size = 8
+prefs.auto_run_latex = false
+
 -- Attributes set when Ipe starts
 --prefs.initial_attributes.farrowsize = "small"
 --prefs.initial_attributes.rarrowsize = "small"
