@@ -94,6 +94,51 @@ function mov(model, num)
 end
 ----
 
+function test(model, num)
+    model.ui:explain("test run!")
+end
+
+function is_empty_doc(model)
+    return #model:page() == 0 and #model.doc == 1 --0 elements and one page
+end
+
+function recent(model, num)
+    m = ipeui.Menu(model.ui:win())
+    for i, j in pairs(model.recent_files) do
+        m:add("o" .. j, j)
+    end
+
+    if model:page():hasSelection() then
+        m:add("nothing", "---")
+        m:add("ipelet_7_goodies", "90° right")
+        m:add("ipelet_5_goodies", "90° left")
+        m:add("ipelet_6_goodies", "180°")
+        m:add("ipelet_1_goodies", "mirror hrz")
+        m:add("ipelet_2_goodies", "mirror vrt")
+    else 
+        if #model.recent_files == 0 then return end
+    end
+
+    mouse = model.ui:globalPos() -- global mouse pos (but updated only after a click? At least on OSX)
+    item, no, subitem = m:execute(mouse.x, mouse.y)
+
+    if item then
+        if item:sub(1,1) == "o" then
+            if not is_empty_doc(model) then --and model:checkModified()
+                mod = model.new(nil, item:sub(2)) --new window
+                mod:runLatex()
+            else
+                model:loadDocument(item:sub(2)) --silently delete all changes and open new doc
+                model:runLatex()
+            end
+            return
+        end
+        if item:sub(1,6) == "ipelet" then
+            model:action(item)
+        end
+    end
+end
+
 ---------------------
 -- What were offering in the menu
 ---------------------
@@ -107,7 +152,9 @@ methods = {
     { label = "Move up 1/4", run = mov, dy = 0.25 },
     { label = "Move down 1/4", run = mov, dy = -0.25 },
     { label = "Move left 1/4", run = mov, dx = -0.25 },
-    { label = "Move right 1/4", run = mov, dx = 0.25 }
+    { label = "Move right 1/4", run = mov, dx = 0.25 },
+    { label = "Test command", run = test},
+    { label = "Recent Files Quick Menu", run = recent}
 }
 
 -- assigning shortcuts for us:
@@ -122,6 +169,10 @@ shortcuts.ipelet_7_ramenmods = "Shift+Up"
 shortcuts.ipelet_8_ramenmods = "Shift+Down"
 shortcuts.ipelet_9_ramenmods = "Shift+Left"
 shortcuts.ipelet_10_ramenmods = "Shift+Right"
+shortcuts.ipelet_11_ramenmods = "Ctrl+Shift+K" --that test one only
+shortcuts.ipelet_12_ramenmods = "Ctrl+R"
+shortcuts.ipelet_8_goodies = "Ctrl+Shift+R" -- Precise rotate
+shortcuts.rename_active_layer = "F2"
 
 --  copying and pasting styles
 shortcuts.pick_properties = "Ctrl+Shift+C"
@@ -133,7 +184,7 @@ shortcuts.copy_page = nil --used to be ctrl+shift+c and v
 shortcuts.paste_page = nil
 shortcuts.new_window = "Ctrl+N"
 
---shortcuts.rename_active_layer = "F2"
+
 ----
 
 prefs.initial.grid_size = 8
