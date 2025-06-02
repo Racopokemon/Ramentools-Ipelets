@@ -1,9 +1,6 @@
 Future work
-- Make F2 rename the layer
 - Make text centered by default
 - `Ctrl+D` Duplicates at cursor (like paste at cursor) AND keeps the original layers
-- Multiple shortcuts possible
-- Open menu for recent files?
 - Better select tool? Maybe eyen with the square with the scale and move handles around it? 
 - Double click things to edit them (texts, Polylines)
 - Double click empty place on page to draw polyline (or other tool)
@@ -12,6 +9,7 @@ Future work
 - Tab and Shift+Tab for next / prev selection
 
 Stuff that would require work in C++
+- Multiple shortcuts possible (on OSX)
 - Drag drop for layers in the gui
 - Shift-clicking un-ticks everything but the current 
 - Apply the color when clicking it; only shift+click opens color chooser dialog
