@@ -1,6 +1,6 @@
 ---- ramenmods ----
 
--- Place this file customization.lua in Ipe’s configuration folder
+-- Place this file in Ipe’s configuration folder
 -- (you’ll find the exact location listed on the ipelet path (check Show configuration again).
 
 -- On MacOS, it is ~/.ipe/ipelets/ramenmods.lua, 
