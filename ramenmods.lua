@@ -12,7 +12,7 @@ label = "Ramen Mods"
 about = "Quality of life stuff by ramen"
 
 function change_gridsize(model, num)
-    model.ui:explain("gridsize++")
+    model.ui:explain("changed gridsize")
     
     local gridsizes = allValues(model, model.doc:sheets(), "gridsize")
     --table.sort(gridsizes)
@@ -133,6 +133,7 @@ shortcuts.copy_page = nil --used to be ctrl+shift+c and v
 shortcuts.paste_page = nil
 shortcuts.new_window = "Ctrl+N"
 
+--shortcuts.rename_active_layer = "F2"
 ----
 
 prefs.initial.grid_size = 8
