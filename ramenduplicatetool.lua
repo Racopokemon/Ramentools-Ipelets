@@ -29,18 +29,19 @@ function DUPLICATETOOL:new(model, selection)
   _G.setmetatable(tool, DUPLICATETOOL)
   tool.model = model
   tool.prim = model:page():primarySelection()
-  
-  -- Sammle die ausgewählten Objekte und ihre Layer
+
   local p = model:page()
   tool.elements = {}
+  tool.layers = {}
   
   for _,i in ipairs(selection) do
     tool.elements[#tool.elements+1] = p[i]:clone()
+    tool.layers[#tool.layers+1] = p:layerOf(i) --wtf claude did GUESS that
   end
   
   tool.start = model.ui:pos()
   
-  -- Erstelle Gruppe für Vorschau
+  -- create group for preview
   local obj = ipe.Group(tool.elements)
   tool.pinned = obj:get("pinned")
   model.ui:pasteTool(obj, tool) --initiates the tool somehow? Without there is no setColor
@@ -75,18 +76,18 @@ function DUPLICATETOOL:mouseButton(button, modifiers, press)
   local pLayers = p:layers()
   local active = p:active(self.model.vno)
   local impossible = {}
-  local layers = {}
+  local finalLayers = {}
   
   -- Check layer availability as in paste_with_layer
-  for i,_ in ipairs(self.elements) do
-    l = p:layerOf(i) --wtf claude did GUESS that
+  for i,_ in ipairs(self.layers) do
+    l = self.layers[i]
     if l == "" or _G.indexOf(l, pLayers) == nil or p:isLocked(l) then
       if _G.indexOf(l, impossible) == nil then
         impossible[#impossible+1] = l
       end
-      layers[#layers+1] = active  -- active layer as fallback
+      finalLayers[#finalLayers+1] = active  -- active layer as fallback
     else
-      layers[#layers+1] = l
+      finalLayers[#finalLayers+1] = l
     end
   end
   
@@ -107,7 +108,7 @@ function DUPLICATETOOL:mouseButton(button, modifiers, press)
     pno = self.model.pno,
     vno = self.model.vno,
     elements = self.elements,
-    layers = layers,
+    layers = finalLayers,
     translation = ipe.Translation(self.translation),
   }
   
