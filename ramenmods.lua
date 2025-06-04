@@ -104,6 +104,7 @@ function recent(model, num)
 
     if model:page():hasSelection() then
         m:add("nothing", "---")
+        m:add("ipelet_8_goodies", "rotate by ...")
         m:add("ipelet_7_goodies", "90° right")
         m:add("ipelet_5_goodies", "90° left")
         m:add("ipelet_6_goodies", "180°")
