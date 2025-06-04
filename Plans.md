@@ -6,6 +6,7 @@ Future work
 - Overhaul the line editing tool, auto close & more stuff
 - Is it possible (to some extend) to see an error log if an ipelet fails to load, instead of just the window closing directly
 - Tab and Shift+Tab for next / prev selection
+- Ctrl+Shift+H to cycle the following states of the active layer: Hide all other layers, hide exactly this layer, show all layers
 
 Stuff that would require work in C++
 - Multiple shortcuts possible (on OSX)
