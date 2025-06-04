@@ -1,3 +1,21 @@
+----------------------------------------------------------
+-- Ramentools - some quality-of-life features by Ramin K --
+----------------------------------------------------------
+-- Duplicate at mouse & keep layers-tool with Ctrl+D
+-- Shift or Ctrl to create stamps
+----------------------------------------------------------
+
+-- license or so --
+
+
+-- Place this file in Ipe’s configuration folder
+-- (you’ll find the exact location listed on the ipelet path (check Show configuration again).
+
+-- On MacOS, it is ~/.ipe/ipelets/, 
+-- on Windows, the file has to be in the top level of the Ipe directory 
+-- (the same place that contains the readme.txt and gpl.txt files).
+
+
 label = "Duplicate-Tool"
 about = "by Ramen (who told claude AI to do the work)"
     --- the code worked at an instant except for one . that was mistaken for a : 
@@ -145,8 +163,7 @@ function duplicate_at_cursor(model, num)
 end
 
 
-
 methods = {
     { label = "Duplicate at cursor", run = duplicate_at_cursor}
 }
-shortcuts.ipelet_1_duplicatetool = "Ctrl+D"
+shortcuts.ipelet_1_ramenduplicatetool = "Ctrl+D"

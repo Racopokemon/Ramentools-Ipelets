@@ -1,6 +1,5 @@
 Future work
 - Make text centered by default
-- `Ctrl+D` Duplicates at cursor (like paste at cursor) AND keeps the original layers
 - Better select tool? Maybe eyen with the square with the scale and move handles around it? 
 - Double click things to edit them (texts, Polylines)
 - Double click empty place on page to draw polyline (or other tool)
