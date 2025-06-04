@@ -16,7 +16,7 @@ function change_gridsize(model, num)
     
     local gridsizes = allValues(model, model.doc:sheets(), "gridsize")
     --table.sort(gridsizes)
-    local currentIndex = indexOf(model.snap.gridsize, gridsizes)
+    local currentIndex = _G.indexOf(model.snap.gridsize, gridsizes)
     if methods[num].back then
         if currentIndex and currentIndex < #gridsizes then
             model.snap.gridsize = gridsizes[currentIndex + 1]
@@ -44,13 +44,7 @@ function allValues(model, sheets, kind)
     end
     return values
 end
-function indexOf(el, list)
-    for i,n in ipairs(list) do
-        if n == el then return i end
-    end
-    return nil
-end
--- copypasta end
+-- end copypasta
     
 -- copypasta from ipelet move.lua, but better grid size
 revertOriginal = _G.revertOriginal
