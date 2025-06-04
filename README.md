@@ -17,3 +17,9 @@ Currently contains the following files:
 - `Ctrl+Shift+C / V` for picking up and applying styles (replacing `Q` and `Ctrl+Q`)
 - Grid size 8 by start, instead of 16
 - Auto-Latex disabled. Compile by saving or pressing `Ctrl+L` (or turn it back on in the file menu)
+
+## Installation
+Just copy the `.lua` files that you want to install into the right directory: 
+
+- On Windows, the file must be placed in the program folder, there already exists a sub-folder named `ipelets`. 
+- On MacOS, you can also create the directory `~/.ipe/ipelets/`

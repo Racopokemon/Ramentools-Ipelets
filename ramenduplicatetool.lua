@@ -1,6 +1,6 @@
-----------------------------------------------------------
+-----------------------------------------------------------
 -- Ramentools - some quality-of-life features by Ramin K --
-----------------------------------------------------------
+-----------------------------------------------------------
 -- Duplicate at mouse & keep layers-tool with Ctrl+D
 -- Shift or Ctrl to create stamps
 ----------------------------------------------------------
@@ -12,8 +12,7 @@
 -- (you’ll find the exact location listed on the ipelet path (check Show configuration again).
 
 -- On MacOS, it is ~/.ipe/ipelets/, 
--- on Windows, the file has to be in the top level of the Ipe directory 
--- (the same place that contains the readme.txt and gpl.txt files).
+-- on Windows, the file must be placed in the program folder, there already exists a sub-folder named ipelets. 
 
 
 label = "Duplicate-Tool"
