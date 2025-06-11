@@ -23,6 +23,11 @@ shortcuts.paste_page = nil
 shortcuts.ungroup = "Ctrl+Shift+G"
 shortcuts.new_window = "Ctrl+N"
 
+--hardly use it & rather annoying, so disabling these hotkeys
+shortcuts.set_origin = nil    --F1
+shortcuts.set_direction = nil --F2
+shortcuts.set_line = nil      --F3
+
 ----
 
 prefs.initial.grid_size = 8

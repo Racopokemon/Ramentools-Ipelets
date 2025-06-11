@@ -114,8 +114,8 @@ methods = {
 --    { label = "Test command", run = test},
 }
 
-shortcuts.ipelet_1_ramenarrowkeymove = "Ctrl+Shift+Down"
-shortcuts.ipelet_2_ramenarrowkeymove = "Ctrl+Shift+Up"
+shortcuts.ipelet_1_ramenarrowkeymove = "Ctrl+Shift+Left"
+shortcuts.ipelet_2_ramenarrowkeymove = "Ctrl+Shift+Right"
 
 shortcuts.ipelet_3_ramenarrowkeymove = "Up"
 shortcuts.ipelet_4_ramenarrowkeymove = "Down"

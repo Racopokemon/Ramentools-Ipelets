@@ -13,6 +13,7 @@ Future work
 - How easy would it be to make P close if start node is clicked or so? And remove doubles and so
 - Make ctrl+shift left+right switch the selected layers? (or swap with grid)
 - ctrl+tab and ctrl+shift+tab for cycling through views AND pages? <- this is just a different key assignment
+- Make the 2nd call of F1, F2 and F3 hide the axis (better solution than just removing the shortcuts)
 
 Stuff that would require work in C++
 - Multiple shortcuts possible (on OSX)
