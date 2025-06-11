@@ -22,7 +22,7 @@ function is_empty_doc(model)
     return #model:page() == 0 and #model.doc == 1 --0 elements and one page
 end
 
-function recent(model, num)
+function run(model)
     m = ipeui.Menu(model.ui:win())
     for i, j in pairs(model.recent_files) do
         m:add("o" .. j, j)
@@ -60,9 +60,6 @@ function recent(model, num)
     end
 end
 
-methods = {
-    { label = "Recent Files Quick Menu", run = recent}
-}
 shortcuts.ipelet_1_ramenquickmenu = "Ctrl+R"
 shortcuts.ipelet_8_goodies = nil -- Precise rotate
 --shortcuts.ipelet_8_goodies = "Ctrl+Shift+R" Precise rotate
