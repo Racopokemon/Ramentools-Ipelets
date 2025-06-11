@@ -3,7 +3,7 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 
 **arrowkeymove**
 - Move the selection using arrow keys based on the gridsize (`Shift` for 1/4 steps)
-- Change gridsize with `Ctrl+Shift+Left / Right`
+- Change gridsize with `Ctrl+Up / Down`
 
 **duplicatetool**
 - `Ctrl+D` to duplicate selection and paste at the cursor (hold `Shift` to stamp) while keeping the *original layers*!

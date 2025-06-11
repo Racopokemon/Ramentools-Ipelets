@@ -56,15 +56,19 @@ function cycle_layers(model, num)
     end
 end
 
-function cycle_layer_vis(model, num)
-    model.ui:explain("test run!")
+function toggle_layer_vis(model, num)
+  local p = model:page()
+  local vno = model.vno
+  local active = p:active(vno)
+  local visible = p:visible(vno, active)
+  model:layeraction_select(active, not visible)
 end
 
 methods = {
     { label = "Select Layer of Selection", run = match_layer},
     { label = "Select Next Layer", run = cycle_layers, back = false},
     { label = "Select Prev Layer", run = cycle_layers, back = true},
-    { label = "Cycle Layer Visibilities", run = cycle_layer_vis}
+    { label = "Toggle Layer Visibility", run = toggle_layer_vis}
 }
 
 shortcuts.ipelet_1_ramenlayertools = "Ctrl+ "
