@@ -64,14 +64,72 @@ function toggle_layer_vis(model, num)
   model:layeraction_select(active, not visible)
 end
 
+-- if active layer is solo'ed already, make all visible. Otherwise make exactly active layer visible
+function toggle_layer_solo(model, num)
+  -- layer, arg
+  local p = model:page() 
+  local layer = p:active(model.vno)
+  local layers = p:layers()
+  local layer_visibilities = {}
+  local already_solo = true
+  for _, l in ipairs(layers) do
+    local vis = p:visible(model.vno, l)
+    layer_visibilities[l] = vis
+    if l ~= layer and vis then
+      already_solo = false
+    end
+    if l == layer and not vis then
+      already_solo = false
+    end
+  end
+
+  local t = { label = "solo visibility for layer " .. layer,
+              pno = model.pno,
+              vno = model.vno,
+              layer = layer,
+              original = layer_visibilities,
+            }
+
+  t.undo = function (t, doc)
+    local p = doc[t.pno]
+    for _, l in ipairs(p:layers()) do
+      p:setVisible(t.vno, l, t.original[l])
+    end
+  end
+
+  if already_solo then
+    -- show all layers
+    t.redo = function (t, doc)
+      local p = doc[t.pno]
+      for _, l in ipairs(p:layers()) do
+        p:setVisible(t.vno, l, true)
+      end
+    end
+  else
+    -- hide all except the given layer
+    t.redo = function (t, doc)
+      local p = doc[t.pno]
+      for _, l in ipairs(p:layers()) do
+        p:setVisible(t.vno, l, l == t.layer)
+      end
+    end
+  end
+  
+  model:register(t)
+  model:deselectNotInView() -- actions.lua always calls here -- but shouldnt it come in the redo function?
+end
+
 methods = {
     { label = "Select Layer of Selection", run = match_layer},
     { label = "Select Next Layer", run = cycle_layers, back = false},
     { label = "Select Prev Layer", run = cycle_layers, back = true},
-    { label = "Toggle Layer Visibility", run = toggle_layer_vis}
+    { label = "Toggle Layer Visibility", run = toggle_layer_vis},
+    { label = "Toggle Layer Solo", run = toggle_layer_solo}
 }
 
 shortcuts.ipelet_1_ramenlayertools = "Ctrl+ "
 shortcuts.ipelet_2_ramenlayertools = "Ctrl+Shift+Down"
 shortcuts.ipelet_3_ramenlayertools = "Ctrl+Shift+Up"
-shortcuts.ipelet_4_ramenlayertools = "Ctrl+Shift+H"
+-- for my own shitty setup, you should *really* switch to the commented variants, it only makes sense
+shortcuts.ipelet_4_ramenlayertools = "Ctrl+Shift+Right" 
+shortcuts.ipelet_5_ramenlayertools = "Ctrl+Shift+Left"  

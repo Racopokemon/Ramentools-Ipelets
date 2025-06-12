@@ -13,6 +13,8 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 
 **layertool**
 - Cycle active layer with `Ctrl+Shift+Up / Down`
+- Toggle active layer visibility with `Ctrl+Shift+Right`
+- Toggle only active visible / all layers visible with `Ctrl+Shift+Left`
 - Activate layer of selection with `Ctrl+Space`
 
 **prefs**
