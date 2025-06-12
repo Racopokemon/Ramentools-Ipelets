@@ -22,6 +22,8 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - Grid size 8 by start, instead of 16
 - Auto-Latex disabled. Compile by saving or pressing `Ctrl+L` (or turn it back on in the file menu)
 - Disable `F1`, `F2` and `F3`
+- `Ctrl+Click` stretches
+- Forth and back mouse buttons delete close objects
 
 ## Installation
 Just copy the `.lua` files that you want to install into the right directory: 

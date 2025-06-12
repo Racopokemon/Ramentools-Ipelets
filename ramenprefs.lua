@@ -38,3 +38,6 @@ prefs.auto_run_latex = false
 --prefs.initial_attributes.rarrowsize = "small"
 --prefs.initial_attributes.horizontalalignment = "center"
 --prefs.initial_attributes.verticalalignment = "center"
+
+mouse.button9 = "shredder"
+mouse.left_shift_command = "stretch"

@@ -6,8 +6,6 @@ Future work
 - Overhaul the line editing tool, auto close & more stuff
 - Is it possible (to some extend) to see an error log if an ipelet fails to load, instead of just the window closing directly
 - Tab and Shift+Tab for next / prev selection
-- Is there an option to stretch with shift mouse that just needs to be enabled?
-  - https://github.com/Marian-Braendle/ipe-lassotool/tree/main?tab=readme-ov-file#usage <- should work!
 - How easy would it be to make P close if start node is clicked or so? And remove doubles and so
 - ctrl+tab and ctrl+shift+tab for cycling through views AND pages? <- this is just a different key assignment
 - Make the 2nd call of F1, F2 and F3 hide the axis (better solution than just removing the shortcuts)
