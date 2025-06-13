@@ -1,5 +1,4 @@
 Future work
-- Make text centered by default
 - Better select tool? Maybe eyen with the square with the scale and move handles around it? 
 - Double click things to edit them (texts, Polylines)
 - Double click empty place on page to draw polyline (or other tool)

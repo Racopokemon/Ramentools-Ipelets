@@ -63,7 +63,7 @@ end
 
 function DUPLICATETOOL:mouseButton(button, modifiers, press)
   if not press then return end
-  local continue = modifiers.control or modifiers.shift
+  local continue = modifiers.control or modifiers.shift or modifiers.command
 
   if not continue then
     self.model.ui:finishTool()
