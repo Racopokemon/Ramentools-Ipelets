@@ -28,16 +28,21 @@ shortcuts.set_origin = nil    --F1
 shortcuts.set_direction = nil --F2
 shortcuts.set_line = nil      --F3
 
+shortcuts.style_sheets = "Ctrl+Shift+Y"
+shortcuts.save_as = "Ctrl+Shift+S"
 ----
 
 prefs.initial.grid_size = 8
 prefs.auto_run_latex = false
 
+prefs.snap.ctrlpoints = true
+prefs.snap.vertex = true
+
 -- Attributes set when Ipe starts (crashes maybe bc no stylesheet is loaded yet)
---prefs.initial_attributes.farrowsize = "small"
---prefs.initial_attributes.rarrowsize = "small"
---prefs.initial_attributes.horizontalalignment = "center"
---prefs.initial_attributes.verticalalignment = "center"
+prefs.initial_attributes.farrowsize = "small"
+prefs.initial_attributes.rarrowsize = "small"
+prefs.initial_attributes.horizontalalignment = "hcenter"
+prefs.initial_attributes.verticalalignment = "vcenter"
 
 mouse.button9 = "shredder"
-mouse.left_shift_command = "stretch"
+mouse.left_command = "stretch"

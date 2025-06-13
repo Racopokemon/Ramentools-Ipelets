@@ -13,17 +13,20 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 
 **layertool**
 - Cycle active layer with `Ctrl+Shift+Up / Down`
-- Toggle active layer visibility with `Ctrl+Shift+Right`
-- Toggle only active visible / all layers visible with `Ctrl+Shift+Left`
+- Toggle only active visible / all layers visible with `Ctrl+Shift+Right`
+- Toggle active layer visibility with `Ctrl+Shift+Left`
 - Activate layer of selection with `Ctrl+Space`
 
 **prefs**
 - `Ctrl+Shift+C / V` for picking up and applying styles (replacing `Q` and `Ctrl+Q`)
-- Grid size 8 by start, instead of 16
-- Auto-Latex disabled. Compile by saving or pressing `Ctrl+L` (or turn it back on in the file menu)
-- Disable `F1`, `F2` and `F3`
 - `Ctrl+Click` stretches
-- Forth and back mouse buttons delete close objects
+- `Ctrl+Shift+S` is save as, `Ctrl+Shift+Y` is style sheets
+- Disable `F1`, `F2` and `F3`
+- Grid size 8 by start, instead of 16
+- Forth and back mouse buttons delete objects
+- Auto-Latex disabled. Compile by saving or pressing `Ctrl+L` (or turn it back on in the file menu)
+- More snap initially activated
+- Text centered by default
 
 ## Installation
 Just copy the `.lua` files that you want to install into the right directory: 

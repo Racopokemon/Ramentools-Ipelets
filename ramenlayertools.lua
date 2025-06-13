@@ -131,5 +131,5 @@ shortcuts.ipelet_1_ramenlayertools = "Ctrl+ "
 shortcuts.ipelet_2_ramenlayertools = "Ctrl+Shift+Down"
 shortcuts.ipelet_3_ramenlayertools = "Ctrl+Shift+Up"
 -- for my own shitty setup, you should *really* switch to the commented variants, it only makes sense
-shortcuts.ipelet_4_ramenlayertools = "Ctrl+Shift+Right" 
-shortcuts.ipelet_5_ramenlayertools = "Ctrl+Shift+Left"  
+shortcuts.ipelet_4_ramenlayertools = "Ctrl+Shift+Left" 
+shortcuts.ipelet_5_ramenlayertools = "Ctrl+Shift+Right"  
