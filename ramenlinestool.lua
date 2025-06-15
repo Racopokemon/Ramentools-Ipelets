@@ -13,13 +13,6 @@
 -- On MacOS, it is ~/.ipe/ipelets/, 
 -- on Windows, the file must be placed in the program folder, there already exists a sub-folder named ipelets. 
 
-
-
--- arc to itself crashes, arc crashes when closing
--- splines have double points (intended, fix in compute) on polygon tool
--- if polyline: NO fill
--- how does it work for the other tools? - SPLINES are ugly and replaced with verts; circles crash lol. 
-    -- Not tested for Splines tool etc yet
 -- make right click and backspace remove (and show info)
 -- make space finish?
 -- Auto close?
@@ -73,8 +66,9 @@ function _G.LINESTOOL:mouseButton(button, modifiers, press)
     self:compute()
     self.model.ui:finishTool()
     local obj = ipe.Path(self.model.attributes, { self.shape }, true)
-
-    --obj:set("linecap", "round")
+    if not self.shape.closed then
+        obj:set("pathmode", "stroked")
+    end
     self.model:creation("create path", obj)
     return
   end
