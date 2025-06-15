@@ -1,5 +1,4 @@
 Future work
-- Overhaul the line editing tool, auto close & more stuff
 - Tab and Shift+Tab for next / prev selection
 - How easy would it be to make P close if start node is clicked or so? And remove doubles and so
 - ctrl+tab and ctrl+shift+tab for cycling through views AND pages? <- this is just a different key assignment

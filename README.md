@@ -28,6 +28,12 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - More snap initially activated
 - Text centered by default
 
+**linestool**
+- Small optimizations in tool polygons, polylines and splines tool
+  - Auto-closes shape
+  - Avoids stacked vertices & single-vertex shapes in various cases
+  - Creating a non-closed shape will not fill it
+
 ## Installation
 Just copy the `.lua` files that you want to install into the right directory: 
 
