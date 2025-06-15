@@ -15,13 +15,13 @@
 
 
 
-
+-- arc to itself crashes, arc crashes when closing
+-- splines have double points (intended, fix in compute) on polygon tool
 -- if polyline: NO fill
--- no doubles!
 -- how does it work for the other tools? - SPLINES are ugly and replaced with verts; circles crash lol. 
     -- Not tested for Splines tool etc yet
 -- make right click and backspace remove (and show info)
--- close if no grid? Tolerance distance?
+-- make space finish?
 -- Auto close?
 -- write markdown dox
 
@@ -41,28 +41,40 @@ function _G.LINESTOOL:mouseButton(button, modifiers, press)
     table.remove(self.v)
     table.remove(self.t)
     button = 2
-  elseif #self.v > 1 and v == self.v[#self.v - 1] then
-    -- "remove doubles", clicking the same pos twice in a row does not create a second vertex
+  elseif #self.v > 1 and v == self.v[#self.v - 1] and self:last() == VERTEX then
+    -- "remove doubles", clicking the same pos twice in a row does not create a second vertex (for arc and verts)
     table.remove(self.v)
     table.remove(self.t)  
+  elseif #self.v > 2 and self.t[#self.t-1] == ARC and self.v[#self.v - 2] == self.v[#self.v] then
+    -- remove degenerated arcs
+    table.remove(self.v)
+    table.remove(self.t)  
+    table.remove(self.v)
+    table.remove(self.t)
   end
   if modifiers.control and button == 1 then button = 2 end
   if button == 2 then
-    if self:last() == SPLINE then self.t[#self.t] = VERTEX end
+    if #self.v <= 1 or (#self.v == 2 and self.v[1] == self.v[2]) then 
+        -- I'd say nobody is sad if we cannot create single points. 
+        self.model.ui:finishTool()
+        return
+    end
     -- Close the shape if the last vertex coincides with the first
     if #self.v > 2 and self.v[1] == self.v[#self.v] then
-      table.remove(self.v)
-      table.remove(self.t)
-      self.mode = "polygons"
+        if self:last() == VERTEX and self.t[#self.t-1] ~= ARC then
+            table.remove(self.v)
+            table.remove(self.t)
+            -- this creates two overlapping verts, but it cant be helped easily - the last segment is always a line but not represented in a shape, so you cant modify it. You also cant delete it in edit mode...
+        end
+        self.mode = "polygons"
+    else
+        if self:last() == SPLINE then self.t[#self.t] = VERTEX end
     end
     self:compute()
     self.model.ui:finishTool()
     local obj = ipe.Path(self.model.attributes, { self.shape }, true)
-    -- if it is just a point, force line cap to round
-    if #self.shape == 1 and self.shape[1].type == "segment" and
-      self.shape[1][1] == self.shape[1][2] then
-      obj:set("linecap", "round")
-    end
+
+    --obj:set("linecap", "round")
     self.model:creation("create path", obj)
     return
   end
