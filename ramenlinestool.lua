@@ -19,7 +19,7 @@
 -- if polyline: NO fill
 -- no doubles!
 -- how does it work for the other tools? - SPLINES are ugly and replaced with verts; circles crash lol. 
-    -- Not tested for Splines etc yet
+    -- Not tested for Splines tool etc yet
 -- make right click and backspace remove (and show info)
 -- close if no grid? Tolerance distance?
 -- Auto close?
@@ -29,18 +29,22 @@ local VERTEX = 1
 local SPLINE = 2
 local ARC = 3
 
--- inject it
-function mouseButton(self, button, modifiers, press)
+-- Injecting a modded version of the original mouseButton call
+function _G.LINESTOOL:mouseButton(button, modifiers, press)
   if not press then return end
   local v = self.model.ui:pos()
   self.v[#self.v] = v
   if button == 0x81 then
     -- double click
     -- the first click already added a vertex, do not use second one
-    if #self.v == 2 then return end
+    if #self.v == 2 then return end -- single vertex, lets maybe dont create something
     table.remove(self.v)
     table.remove(self.t)
     button = 2
+  elseif #self.v > 1 and v == self.v[#self.v - 1] then
+    -- "remove doubles", clicking the same pos twice in a row does not create a second vertex
+    table.remove(self.v)
+    table.remove(self.t)  
   end
   if modifiers.control and button == 1 then button = 2 end
   if button == 2 then
@@ -75,5 +79,3 @@ function mouseButton(self, button, modifiers, press)
   self.model.ui:update(false) -- update tool
   self:explain()
 end
-
-_G.LINESTOOL.mouseButton = mouseButton

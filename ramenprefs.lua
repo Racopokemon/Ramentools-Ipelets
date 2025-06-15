@@ -35,7 +35,7 @@ shortcuts.save_as = "Ctrl+Shift+S"
 prefs.initial.grid_size = 8
 prefs.auto_run_latex = false
 
-prefs.snap.ctrlpoints = true
+prefs.snap.intersection = true
 prefs.snap.vertex = true
 
 -- Attributes set when Ipe starts (crashes maybe bc no stylesheet is loaded yet)
