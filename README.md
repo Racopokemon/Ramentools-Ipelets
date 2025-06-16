@@ -6,7 +6,7 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - Change gridsize with `Ctrl+Up / Down`
 
 **duplicatetool**
-- `Ctrl+D` to duplicate selection and paste at the cursor (hold `Shift` to stamp) while keeping the *original layers*!
+- `Ctrl+D` to duplicate selection and paste at the cursor (hold `Shift` to stamp), all while keeping the *original layers*!
 
 **quickmenu**
 - `Ctrl+R` opens quick menu for recent files and after that rotate and mirror basics
@@ -18,7 +18,7 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - Activate layer of selection with `Ctrl+Space`
 
 **linestool**
-- Small optimizations in tool polygons, polylines and splines tool
+- Small optimizations in polygons, polylines and splines tool
   - Auto-closes shape if returning to start vertex
   - Automatically creates a closed polygon in this case
   - Right-click removes last vertex
