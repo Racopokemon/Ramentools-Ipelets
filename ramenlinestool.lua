@@ -13,10 +13,7 @@
 -- On MacOS, it is ~/.ipe/ipelets/, 
 -- on Windows, the file must be placed in the program folder, there already exists a sub-folder named ipelets. 
 
--- Auto close?
 -- write markdown dox
--- better explain
--- fix backspace and enter not working
 
 local VERTEX = 1
 local SPLINE = 2
@@ -73,15 +70,14 @@ if #self.v > 2 and v == self.v[1] then
 end
 
 function _G.LINESTOOL:explain()
-  if true then return end
   local s
   if self:last() == SPLINE then
     s = ("Left: add ctrl point | Shift+Left: switch to line mode" ..
-	 " | Del: delete ctrl point")
+	 " | Right: delete ctrl point")
   else
-    s = "Left: add vtx | Del: delete vtx"
+    s = "Left: add vtx | Right: delete vtx"
   end
-  s = s .. " | Right, Ctrl-Left, or Double-Left: final vtx"
+  s = s .. " | Space, Ctrl-Left or Double-Left: final vtx"
   if self:has_segs(2) then
     s = s .. " | " .. _G.shortcuts_linestool.spline .. ": spline mode"
   end
@@ -109,13 +105,13 @@ function _G.LINESTOOL:delete()
 end
 
 function _G.LINESTOOL:key(text, modifiers)
-  if text == "backspace" or text == "delete" then
+  if text == "backspace" or text == "delete" then -- this doesn't work :(
     self:delete()
     return true
   elseif text == "\027" then
     self.model.ui:finishTool()
     return true
-  elseif text == " " or text == "enter" then
+  elseif text == " " or text == "enter" then -- enter doesnt work :(
     if self:last() == SPLINE then self:finish(false)
     elseif self:last() == VERTEX and #self.t > 2 and self.t[#self.t-1] == ARC then self:finish(false)
     else self:finish(true) end
