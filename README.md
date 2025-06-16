@@ -33,12 +33,12 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - Disable `F1`, `F2` and `F3`
 - Grid size 8 by start, instead of 16
 - Forth and back mouse buttons delete objects
-- Auto-Latex disabled. Compile by saving or pressing `Ctrl+L` (or turn it back on in the file menu)
 - More snap initially activated
 - Text centered by default
+- Auto-Latex disabled. Compile by saving or pressing `Ctrl+L` (or turn it back on in the file menu)
 
 ## Installation
-Just copy the `.lua` files that you want to install into the right directory: 
+Just copy the `.lua` files that you're interested in into the proper directory: 
 
 - On Windows, the file must be placed in the program folder, there already exists a sub-folder named `ipelets`. 
 - On MacOS, you can also create the directory `~/.ipe/ipelets/`

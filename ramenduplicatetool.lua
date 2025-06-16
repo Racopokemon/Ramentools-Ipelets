@@ -14,8 +14,7 @@
 -- On MacOS, it is ~/.ipe/ipelets/, 
 -- on Windows, the file must be placed in the program folder, there already exists a sub-folder named ipelets. 
 
-
-label = "Duplicate-Tool"
+label = "Duplicate at cursor"
 about = "by Ramen (who told claude AI to do the work)"
     --- the code worked at an instant except for one . that was mistaken for a : 
     --- Also, it guessed that p:layerOf(i) exists, that was not in the original code
@@ -152,7 +151,7 @@ end
 
 ---
 
-function duplicate_at_cursor(model, num)
+function run(model)
   local selection = model:selection()
   if #selection == 0 then
     model.ui:explain("Nothing selected to duplicate")
@@ -162,8 +161,4 @@ function duplicate_at_cursor(model, num)
   DUPLICATETOOL:new(model, selection)
 end
 
-
-methods = {
-    { label = "Duplicate at cursor", run = duplicate_at_cursor}
-}
 shortcuts.ipelet_1_ramenduplicatetool = "Ctrl+D"

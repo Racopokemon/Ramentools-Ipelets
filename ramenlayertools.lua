@@ -120,9 +120,9 @@ function toggle_layer_solo(model, num)
 end
 
 methods = {
-    { label = "Select Layer of Selection", run = match_layer},
-    { label = "Select Next Layer", run = cycle_layers, back = false},
-    { label = "Select Prev Layer", run = cycle_layers, back = true},
+    { label = "Activate Layer of Selection", run = match_layer},
+    { label = "Activate Next Layer", run = cycle_layers, back = false},
+    { label = "Activate Prev Layer", run = cycle_layers, back = true},
     { label = "Toggle Layer Visibility", run = toggle_layer_vis},
     { label = "Toggle Layer Solo", run = toggle_layer_solo}
 }
