@@ -36,13 +36,17 @@ function _G.LINESTOOL:mouseButton(button, modifiers, press)
   if (modifiers.control or modifiers.command) and button == 1 then
     self:finish(false)
     return
+end
+if #self.v > 2 and v == self.v[1] then
+    self:finish(false)
+    return
   end
   if button == 2 then -- right click deletes last one now
     self:delete()
     return
   end
   
-  -- no finish, no delete: Normal creation now
+  -- no finish, no delete: normal creation now
   if #self.v > 1 and v == self.v[#self.v - 1] and self:last() == VERTEX then
     -- "remove doubles", clicking the same pos twice in a row does not create a second vertex (for arc and verts)
     table.remove(self.v)
@@ -189,3 +193,14 @@ function _G.LINESTOOL:finish(deleteLast)
     end
     self.model:creation("create path", obj)
 end
+
+function comp(self)
+    if #self.v > 2 and self.v[1] == self.v[#self.v] then
+        self.setColor(0, 0, 1.0)
+    else
+        self.setColor(1.0, 0, 0)
+    end
+    self:compute_original()
+end
+_G.LINESTOOL.compute_original = _G.LINESTOOL.compute
+_G.LINESTOOL.compute = comp
