@@ -17,6 +17,15 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - Toggle active layer visibility with `Ctrl+Shift+Left`
 - Activate layer of selection with `Ctrl+Space`
 
+**linestool**
+- Small optimizations in tool polygons, polylines and splines tool
+  - Auto-closes shape if returning to start vertex
+  - Automatically creates a closed polygon in this case
+  - Right-click removes last vertex
+  - Avoids stacked vertices & single-vertex shapes in various cases
+  - Creating a non-closed shape will not fill it
+  - Finish by pressing space
+
 **prefs**
 - `Ctrl+Shift+C / V` for picking up and applying styles (replacing `Q` and `Ctrl+Q`)
 - `Ctrl+Click` stretches
@@ -27,12 +36,6 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - Auto-Latex disabled. Compile by saving or pressing `Ctrl+L` (or turn it back on in the file menu)
 - More snap initially activated
 - Text centered by default
-
-**linestool**
-- Small optimizations in tool polygons, polylines and splines tool
-  - Auto-closes shape
-  - Avoids stacked vertices & single-vertex shapes in various cases
-  - Creating a non-closed shape will not fill it
 
 ## Installation
 Just copy the `.lua` files that you want to install into the right directory: 
