@@ -1,0 +1,19 @@
+------------------------------------------------------------
+-- Ramentools - some quality-of-life improvements for ipe --
+------------------------------------------------------------
+-- Duplicate at mouse & keep layers-tool with Ctrl+D
+-- Shift or Ctrl to create stamps
+------------------------------------------------------------
+
+-- Place this file in Ipe’s configuration folder
+-- (you’ll find the exact location listed on the ipelet path (check Show configuration again).
+
+-- On MacOS, it is ~/.ipe/ipelets/, 
+-- on Windows, the file must be placed in the program folder, there already exists a sub-folder named ipelets. 
+
+
+
+
+
+--label = "Silent actions"
+--about = "Reduce some warnings when deleting layers etc."

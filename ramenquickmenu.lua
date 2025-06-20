@@ -1,19 +1,15 @@
-----------------------------------------------------------
--- Ramentools - some quality-of-life features by Ramin K --
-----------------------------------------------------------
+------------------------------------------------------------
+-- Ramentools - some quality-of-life improvements for ipe --
+------------------------------------------------------------
 -- Ctrl+R opens a context menu at the cursor to open 
 -- recent files & flip and rotate if theres a selection
-----------------------------------------------------------
-
--- license or so --
-
+------------------------------------------------------------
 
 -- Place this file in Ipe’s configuration folder
 -- (you’ll find the exact location listed on the ipelet path (check Show configuration again).
 
 -- On MacOS, it is ~/.ipe/ipelets/, 
 -- on Windows, the file must be placed in the program folder, there already exists a sub-folder named ipelets. 
-
 
 label = "Quick menu"
 about = "Open recent files & do rotations and flips with Ctrl+R"

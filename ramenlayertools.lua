@@ -1,19 +1,15 @@
-----------------------------------------------------------
--- Ramentools - some quality-of-life features by Ramin K --
-----------------------------------------------------------
+------------------------------------------------------------
+-- Ramentools - some quality-of-life improvements for ipe --
+------------------------------------------------------------
 -- Move objects with arrow keys (copied from existing 
 -- ipelet) and change grid size 
-----------------------------------------------------------
-
--- license or so --
-
+------------------------------------------------------------
 
 -- Place this file in Ipe’s configuration folder
 -- (you’ll find the exact location listed on the ipelet path (check Show configuration again).
 
 -- On MacOS, it is ~/.ipe/ipelets/, 
 -- on Windows, the file must be placed in the program folder, there already exists a sub-folder named ipelets. 
-
 
 label = "Layer-related shortcuts"
 about = "Some stuff that might come in handy"

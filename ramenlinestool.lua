@@ -1,11 +1,8 @@
-----------------------------------------------------------
--- Ramentools - some quality-of-life features by Ramin K --
-----------------------------------------------------------
+------------------------------------------------------------
+-- Ramentools - some quality-of-life improvements for ipe --
+------------------------------------------------------------
 -- Some changes to details in the LINESTOOL
-----------------------------------------------------------
-
--- license or so --
-
+------------------------------------------------------------
 
 -- Place this file in Ipe’s configuration folder
 -- (you’ll find the exact location listed on the ipelet path (check Show configuration again).
