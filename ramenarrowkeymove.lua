@@ -1,22 +1,25 @@
----- ramenmods ----
+------------------------------------------------------------
+-- Ramentools - some quality-of-life improvements for ipe --
+------------------------------------------------------------
+-- Move objects with arrow keys (copied from existing 
+-- ipelet) and change grid size 
+------------------------------------------------------------
 
 -- Place this file in Ipe’s configuration folder
 -- (you’ll find the exact location listed on the ipelet path (check Show configuration again).
 
--- On MacOS, it is ~/.ipe/ipelets/ramenmods.lua, 
--- on Windows, the file has to be in the top level of the Ipe directory 
--- (the same place that contains the readme.txt and gpl.txt files).
+-- On MacOS, it is ~/.ipe/ipelets/, 
+-- on Windows, the file must be placed in the program folder, there already exists a sub-folder named ipelets. 
 
-label = "Ramen Mods"
-
-about = "Quality of life stuff by ramen"
+label = "Move with arrow keys"
+about = "And change grid size with ctrl+shift+up / down"
 
 function change_gridsize(model, num)
-    model.ui:explain("gridsize++")
+    model.ui:explain("changed gridsize")
     
     local gridsizes = allValues(model, model.doc:sheets(), "gridsize")
     --table.sort(gridsizes)
-    local currentIndex = indexOf(model.snap.gridsize, gridsizes)
+    local currentIndex = _G.indexOf(model.snap.gridsize, gridsizes)
     if methods[num].back then
         if currentIndex and currentIndex < #gridsizes then
             model.snap.gridsize = gridsizes[currentIndex + 1]
@@ -44,13 +47,7 @@ function allValues(model, sheets, kind)
     end
     return values
 end
-function indexOf(el, list)
-    for i,n in ipairs(list) do
-        if n == el then return i end
-    end
-    return nil
-end
--- copypasta end
+-- end copypasta
     
 -- copypasta from ipelet move.lua, but better grid size
 revertOriginal = _G.revertOriginal
@@ -94,52 +91,35 @@ function mov(model, num)
 end
 ----
 
----------------------
--- What were offering in the menu
----------------------
+function test(model, num)
+    model.ui:explain("test run!")
+end
+
+
 methods = {
     { label = "Next Grid Size", run = change_gridsize, back = false},
-    { label = "Prev Grid Size", run = change_gridsize, back = true },
-    { label = "Move up", run = mov, dy = 1 },
-    { label = "Move down", run = mov, dy = -1 },
-    { label = "Move left", run = mov, dx = -1 },
-    { label = "Move right", run = mov, dx = 1 },
-    { label = "Move up 1/4", run = mov, dy = 0.25 },
-    { label = "Move down 1/4", run = mov, dy = -0.25 },
-    { label = "Move left 1/4", run = mov, dx = -0.25 },
-    { label = "Move right 1/4", run = mov, dx = 0.25 }
+    { label = "Prev Grid Size", run = change_gridsize, back = true},
+    { label = "Move up", run = mov, dy = 1},
+    { label = "Move down", run = mov, dy = -1},
+    { label = "Move left", run = mov, dx = -1},
+    { label = "Move right", run = mov, dx = 1},
+    { label = "Move up 1/4", run = mov, dy = 0.25},
+    { label = "Move down 1/4", run = mov, dy = -0.25},
+    { label = "Move left 1/4", run = mov, dx = -0.25},
+    { label = "Move right 1/4", run = mov, dx = 0.25}
+--    { label = "Test command", run = test},
 }
 
--- assigning shortcuts for us:
-shortcuts.ipelet_1_ramenmods = "Ctrl+Shift+Down"
-shortcuts.ipelet_2_ramenmods = "Ctrl+Shift+Up"
+shortcuts.ipelet_1_ramenarrowkeymove = "Ctrl+Up"
+shortcuts.ipelet_2_ramenarrowkeymove = "Ctrl+Down"
 
-shortcuts.ipelet_3_ramenmods = "Up"
-shortcuts.ipelet_4_ramenmods = "Down"
-shortcuts.ipelet_5_ramenmods = "Left"
-shortcuts.ipelet_6_ramenmods = "Right"
-shortcuts.ipelet_7_ramenmods = "Shift+Up"
-shortcuts.ipelet_8_ramenmods = "Shift+Down"
-shortcuts.ipelet_9_ramenmods = "Shift+Left"
-shortcuts.ipelet_10_ramenmods = "Shift+Right"
+shortcuts.ipelet_3_ramenarrowkeymove = "Up"
+shortcuts.ipelet_4_ramenarrowkeymove = "Down"
+shortcuts.ipelet_5_ramenarrowkeymove = "Left"
+shortcuts.ipelet_6_ramenarrowkeymove = "Right"
+shortcuts.ipelet_7_ramenarrowkeymove = "Shift+Up"
+shortcuts.ipelet_8_ramenarrowkeymove = "Shift+Down"
+shortcuts.ipelet_9_ramenarrowkeymove = "Shift+Left"
+shortcuts.ipelet_10_ramenarrowkeymove = "Shift+Right"
 
---  copying and pasting styles
-shortcuts.pick_properties = "Ctrl+Shift+C"
-shortcuts.apply_properties = "Ctrl+Shift+V"
-
-shortcuts.duplicate = "Ctrl+D"
-shortcuts.ungroup = "Ctrl+Shift+G"
-shortcuts.copy_page = nil --used to be ctrl+shift+c and v
-shortcuts.paste_page = nil
-shortcuts.new_window = "Ctrl+N"
-
-----
-
-prefs.initial.grid_size = 8
-prefs.auto_run_latex = false
-
--- Attributes set when Ipe starts
---prefs.initial_attributes.farrowsize = "small"
---prefs.initial_attributes.rarrowsize = "small"
---prefs.initial_attributes.horizontalalignment = "center"
---prefs.initial_attributes.verticalalignment = "center"
+--shortcuts.ipelet_11_ramenarrowkeymove = "Ctrl+Shift+K" --that test one only

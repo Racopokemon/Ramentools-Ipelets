@@ -49,3 +49,5 @@ qvoronoi.lua
 search-replace.lua
 selectby.lua
 symbols.lua
+polyfillet.lua
+lassotool.lua
