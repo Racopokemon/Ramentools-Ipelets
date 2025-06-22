@@ -34,8 +34,9 @@ function run(model)
         if #model.recent_files == 0 then return end
     end
 
-    mouse = model.ui:globalPos() -- global mouse pos (but updated only after a click? At least on OSX)
-    item, no, subitem = m:execute(mouse.x, mouse.y)
+    mouse = model.ui:globalPos() -- global mouse pos 
+    -- (but updated only after the first click. On Windows, its some e-300 float, so we need to floor it)
+    item, no, subitem = m:execute(math.floor(mouse.x), math.floor(mouse.y))
 
     if item then
         if item:sub(1,1) == "o" then
