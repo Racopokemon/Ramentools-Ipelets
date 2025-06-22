@@ -1,8 +1,9 @@
 ------------------------------------------------------------
 -- Ramentools - some quality-of-life improvements for ipe --
 ------------------------------------------------------------
--- Prints syntax and runtime errors when loading ipelets
--- instead of silently crashing. 
+-- Shows an error message describing syntax and runtime 
+-- errors when loading ipelets instead of silently crashing. 
+-- 
 --
 -- The only changed function is load_ipelets()
 --

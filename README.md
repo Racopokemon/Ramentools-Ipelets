@@ -37,8 +37,19 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - Text centered by default
 - Auto-Latex disabled. Compile by saving or pressing `Ctrl+L` (or turn it back on in the file menu)
 
+**main.lua**
+- Adapted version of the internal `main.lua` file that shows an error message when an ipelet was NOT successfully loaded, instead of just silently crashing. 
+
 ## Installation
 Just copy the `.lua` files that you're interested in into the proper directory: 
 
 - On Windows, create the directory `~/ipelets/`
 - On MacOS, create the directory `~/.ipe/ipelets/`
+
+The lua files in `replace in lua-directory` need (would you have guessed?) to be placed instead of the same-named files in the `lua` directory. 
+You'll find them 
+
+- usually in `C:/Program Files/ipe .../bin/lua/` on Windows
+- somewhere in `Library/ipe/...bin/lua/` on MacOS
+
+Please backup / rename the original files. 
