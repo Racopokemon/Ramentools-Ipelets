@@ -5,11 +5,9 @@
 -- recent files & flip and rotate if theres a selection
 ------------------------------------------------------------
 
--- Place this file in Ipe’s configuration folder
--- (you’ll find the exact location listed on the ipelet path (check Show configuration again).
-
--- On MacOS, it is ~/.ipe/ipelets/, 
--- on Windows, the file must be placed in the program folder, there already exists a sub-folder named ipelets. 
+-- Place this file in ...
+-- ~/.ipe/ipelets/ (on Mac)
+-- %userprofile%/ipelets/ (on Windows)
 
 label = "Quick menu"
 about = "Open recent files & do rotations and flips with Ctrl+R"

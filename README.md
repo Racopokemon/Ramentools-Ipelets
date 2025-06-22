@@ -40,5 +40,5 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 ## Installation
 Just copy the `.lua` files that you're interested in into the proper directory: 
 
-- On Windows, the file must be placed in the program folder, there already exists a sub-folder named `ipelets`. 
-- On MacOS, you can also create the directory `~/.ipe/ipelets/`
+- On Windows, create the directory `~/ipelets/`
+- On MacOS, create the directory `~/.ipe/ipelets/`

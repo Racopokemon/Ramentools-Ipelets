@@ -4,13 +4,9 @@
 -- Some changes to details in the LINESTOOL
 ------------------------------------------------------------
 
--- Place this file in Ipe’s configuration folder
--- (you’ll find the exact location listed on the ipelet path (check Show configuration again).
-
--- On MacOS, it is ~/.ipe/ipelets/, 
--- on Windows, the file must be placed in the program folder, there already exists a sub-folder named ipelets. 
-
--- write markdown dox
+-- Place this file in ...
+-- ~/.ipe/ipelets/ (on Mac)
+-- %userprofile%/ipelets/ (on Windows)
 
 local VERTEX = 1
 local SPLINE = 2
