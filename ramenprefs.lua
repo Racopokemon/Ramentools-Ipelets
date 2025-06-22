@@ -8,9 +8,9 @@
 -- ~/.ipe/ipelets/ (on Mac)
 -- %userprofile%/ipelets/ (on Windows)
 
---  copying and pasting styles
-
+-- copying and pasting styles
 if config.platform == "apple" then
+    --for some reason, multi-shortcuts are not supported on mac
     shortcuts.pick_properties = "Ctrl+Shift+C"
     shortcuts.apply_properties = "Ctrl+Shift+V"
 else
