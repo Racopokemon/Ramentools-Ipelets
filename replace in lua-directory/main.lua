@@ -4,10 +4,12 @@
 -- Shows an error message describing syntax and runtime 
 -- errors when loading ipelets instead of silently crashing. 
 -- 
+-- Changes were made exactly to ...
+-- load_ipelets()
+-- local win32_conversions
 --
--- The only changed function is load_ipelets()
 --
--- backup / rename your original main.lua file! 
+-- Backup / rename your original main.lua file! 
 ------------------------------------------------------------
 
 
@@ -269,7 +271,7 @@ end
 local win32_conversions = {
   PgDown=0x22, PgUp=0x21, Home=0x24, End=0x23,
   Left=0x25, Up=0x26, Right=0x27, Down=0x28,
-  insert=0x2d, delete=0x2e
+  insert=0x2d, delete=0x2e, tab=0x09, backspace=0x08, Enter=0x0D
 }
 
 function win32_shortcut_convert(s)

@@ -31,9 +31,21 @@ shortcuts.set_line = nil      --F3
 shortcuts.style_sheets = "Ctrl+Shift+Y"
 shortcuts.save_as = "Ctrl+Shift+S"
 
+-- backspace, tab, enter etc. are introduced in the modified main.lua, without it they will not work on Windows. However, you can look up the keycodes here: https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
+-- backspace e.g. can be acessed using \b
 if config.platform ~= "apple" then
-    shortcuts.delete = {"delete", "backspace"} --:( on windows it doesnt recognize backspace
+    shortcuts.delete = {"delete", "backspace"}
 end
+
+if config.platform == "apple" then
+    shortcuts.next_view = "Ctrl+tab"
+    shortcuts.previous_view = "Ctrl+Shift+tab"
+else
+    shortcuts.next_view = {"Ctrl+tab", "PgDown"}
+    shortcuts.previous_view = {"Ctrl+Shift+tab", "PgUp"}
+end
+
+
 ----
 
 prefs.initial.grid_size = 8

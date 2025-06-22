@@ -31,6 +31,7 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - `Ctrl+Click` stretches
 - `Ctrl+Shift+S` is save as, `Ctrl+Shift+Y` is style sheets
 - Disable `F1`, `F2` and `F3`
+- `Ctrl+Tab` and `Ctrl+Shift+Tab` to move between views
 - Grid size 8 by start, instead of 16
 - Forth and back mouse buttons delete objects
 - More snap initially activated
@@ -38,7 +39,8 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - Auto-Latex disabled. Compile by saving or pressing `Ctrl+L` (or turn it back on in the file menu)
 
 **main.lua**
-- On startup, ipe shows an error message when an ipelet was NOT successfully loaded, instead of just silently crashing. 
+- On startup, ipe shows an error message when an ipelet was NOT successfully loaded, instead of just silently crashing
+- Recognize 'backspace', 'tab', 'enter' as windows shortcuts
 
 ## Installation
 Just copy the `.lua` files that you're interested in into the proper directory: 
