@@ -38,7 +38,7 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - Auto-Latex disabled. Compile by saving or pressing `Ctrl+L` (or turn it back on in the file menu)
 
 **main.lua**
-- Adapted version of the internal `main.lua` file that shows an error message when an ipelet was NOT successfully loaded, instead of just silently crashing. 
+- On startup, ipe shows an error message when an ipelet was NOT successfully loaded, instead of just silently crashing. 
 
 ## Installation
 Just copy the `.lua` files that you're interested in into the proper directory: 
