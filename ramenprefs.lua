@@ -30,6 +30,10 @@ shortcuts.set_line = nil      --F3
 
 shortcuts.style_sheets = "Ctrl+Shift+Y"
 shortcuts.save_as = "Ctrl+Shift+S"
+
+if config.platform ~= "apple" then
+    shortcuts.delete = {"delete", "backspace"} --:( on windows it doesnt recognize backspace
+end
 ----
 
 prefs.initial.grid_size = 8

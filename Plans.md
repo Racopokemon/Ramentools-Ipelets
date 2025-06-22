@@ -1,16 +1,17 @@
 Future work
+- Make poly-tool remove not needed verts, if theres multiple in a row. On finish, so also between start and end
+- See how hard it is to modify the edittool to better create verts. Best would be to click anywhere on the line using snap. But, well. 
 - Tab and Shift+Tab for next / prev selection
 - How easy would it be to make P close if start node is clicked or so? And remove doubles and so
-- ctrl+tab and ctrl+shift+tab for cycling through views AND pages? <- this is just a different key assignment
+- ctrl+tab and ctrl+shift+tab for cycling through views AND pages? <- this is essentially just a different key assignment
 - Silent layer removal etc. - right now we get warnings, but we could also just select the next layer when removing the active layer. 
 - Make the 2nd call of F1, F2 and F3 hide the axis (better solution than just removing the shortcuts)
 - Having boolean and and offset tools would make the software even more powerful ... but welllll xD
 
 Work that requires modifying the internal .lua scripts
-- Is it possible (to some extend) to see an error log if an ipelet fails to load, instead of just the window closing directly?
-- Look for ipelets also in subfolders
 
 Stuff that would require work in C++
+- Look for ipelets also in subfolders (the lua interface does not provide a way to identify dirs / iterate through them, so this is required first)
 - Multiple shortcuts possible, I need that xD (on OSX)
 - Double click things to edit them (texts, Polylines)
 - Double click empty place on page to draw polyline (or other tool)
