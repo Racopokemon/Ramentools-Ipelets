@@ -9,8 +9,14 @@
 -- %userprofile%/ipelets/ (on Windows)
 
 --  copying and pasting styles
-shortcuts.pick_properties = "Ctrl+Shift+C"
-shortcuts.apply_properties = "Ctrl+Shift+V"
+
+if config.platform == "apple" then
+    shortcuts.pick_properties = "Ctrl+Shift+C"
+    shortcuts.apply_properties = "Ctrl+Shift+V"
+else
+    shortcuts.pick_properties = {"Q", "Ctrl+Shift+C"}
+    shortcuts.apply_properties = {"Ctrl+Q", "Ctrl+Shift+V"}
+end
 shortcuts.copy_page = nil --used to be ctrl+shift+c and v
 shortcuts.paste_page = nil
 
