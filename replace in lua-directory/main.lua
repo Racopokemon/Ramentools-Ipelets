@@ -426,9 +426,23 @@ end
 function load_ipelets()
   for _,ft in ipairs(ipelets) do
     local fd = ipe.openFile(ft.path, "rb")
-    local ff = assert(load(function () return fd:read("*L") end,
-			   ft.path, "bt", ft))
-    ff()
+    
+    -- catch syntax errors
+    local ff, err1 = load(function () return fd:read("*L") end,
+			   ft.path, "bt", ft)
+    
+    if ff==nil then
+      ipeui.messageBox(nil, "critical",
+          "Error while loading \n" .. ft.path .. "\n\n" .. err1, nil)
+      assert(nil)
+    end
+    -- protected ff()-call
+    local ok, err2 = pcall(ff)
+    if not ok then
+      ipeui.messageBox(nil, "critical", 
+          "Error while running \n" .. ft.path .. "\n\n" .. tostring(err2), nil)
+      assert(nil)
+    end
   end
 end
 
