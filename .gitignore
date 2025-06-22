@@ -39,3 +39,13 @@ luac.out
 *.x86_64
 *.hex
 
+align.lua
+euclid.lua
+goodies.lua
+gridmaker.lua
+layer_select.lua
+move.lua
+qvoronoi.lua
+search-replace.lua
+selectby.lua
+symbols.lua
