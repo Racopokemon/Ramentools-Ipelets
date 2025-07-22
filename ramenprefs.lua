@@ -62,3 +62,4 @@ prefs.initial_attributes.verticalalignment = "vcenter"
 
 mouse.button9 = "shredder"
 mouse.left_command = "stretch"
+mouse.left_control = "stretch"
