@@ -31,6 +31,8 @@ shortcuts.set_line = nil      --F3
 shortcuts.style_sheets = "Ctrl+Shift+Y"
 shortcuts.save_as = "Ctrl+Shift+S"
 
+shortcuts.duplicate = nil --super weird if you don't know it and randomly theres stuff twice
+
 -- backspace, tab, enter etc. are introduced in the modified main.lua, without it they will not work on Windows. However, you can look up the keycodes here: https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
 -- backspace e.g. can be acessed using \b
 if config.platform ~= "apple" then
