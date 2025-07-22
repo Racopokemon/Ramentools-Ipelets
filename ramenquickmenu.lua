@@ -35,8 +35,12 @@ function run(model)
     end
 
     mouse = model.ui:globalPos() -- global mouse pos 
-    -- (but updated only after the first click. On Windows, its some e-300 float, so we need to floor it)
-    item, no, subitem = m:execute(math.floor(mouse.x), math.floor(mouse.y))
+    -- (but updated only after the first click. On Windows after bootup, its some e-300 float OR some e+300 float OR some random 8.07... float, so we work around that
+    -- (actually almost feels like not initialized at all, its entirely random)
+    local x, y = mouse.x, mouse.y
+    if x < 1 or x > 100000 then x = 0 end
+    if y < 1 or y > 100000 then y = 0 end
+    item, no, subitem = m:execute(math.floor(x), math.floor(y))
 
     if item then
         if item:sub(1,1) == "o" then
