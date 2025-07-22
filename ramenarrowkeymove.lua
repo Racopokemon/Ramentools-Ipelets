@@ -93,6 +93,40 @@ function test(model, num)
     model.ui:explain("test run!")
 end
 
+function select_next(model, num)
+    next = methods[num].next
+
+    local p = model:page()
+    
+    if p:hasSelection() then
+        p:ensurePrimarySelection()
+        idx = p:primarySelection()
+    else
+        if next then
+            idx = 1
+        else 
+            idx = #p
+        end
+    end
+    model.ui:explain(idx)
+    --how u handle selections
+--  for _,i in ipairs(selection) do
+--    elements[#elements + 1] = p[i]:clone()
+--  end
+
+
+    --idx = 
+    -- if no selection: idx = first or last element
+    -- else 
+    -- selection=primaryselection or so
+
+
+
+    -- what if nothing is visible, we cant select anything? Note start index, if we reach it, return. 
+    --p:deselect_all()
+    --p:setSelect(idx, 1)
+    model.ui:update(false)
+end
 
 methods = {
     { label = "Next Grid Size", run = change_gridsize, back = false},
@@ -104,7 +138,9 @@ methods = {
     { label = "Move up 1/4", run = mov, dy = 0.25},
     { label = "Move down 1/4", run = mov, dy = -0.25},
     { label = "Move left 1/4", run = mov, dx = -0.25},
-    { label = "Move right 1/4", run = mov, dx = 0.25}
+    { label = "Move right 1/4", run = mov, dx = 0.25},
+    {label = "Select next element", run = select_next, next=true},
+    {label = "Select previous element", run = select_next, next=false}
 --    { label = "Test command", run = test},
 }
 
@@ -119,5 +155,13 @@ shortcuts.ipelet_7_ramenarrowkeymove = "Shift+Up"
 shortcuts.ipelet_8_ramenarrowkeymove = "Shift+Down"
 shortcuts.ipelet_9_ramenarrowkeymove = "Shift+Left"
 shortcuts.ipelet_10_ramenarrowkeymove = "Shift+Right"
+
+if config.platform == "win" then
+    shortcuts.ipelet_11_ramenarrowkeymove = "tab"
+    shortcuts.ipelet_12_ramenarrowkeymove = "Shift+tab"
+else
+    shortcuts.ipelet_11_ramenarrowkeymove = "\t"
+    shortcuts.ipelet_12_ramenarrowkeymove = "Shift+\t"
+end
 
 --shortcuts.ipelet_11_ramenarrowkeymove = "Ctrl+Shift+K" --that test one only

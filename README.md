@@ -31,7 +31,7 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - `Ctrl+Click` stretches
 - `Ctrl+Shift+S` is save as, `Ctrl+Shift+Y` is style sheets
 - Disable `F1`, `F2` and `F3`
-- `Ctrl+Tab` and `Ctrl+Shift+Tab` to move between views
+- `Ctrl+Tab` and `Ctrl+Shift+Tab` to move between views (`Control` on Mac)
 - Grid size 8 by start, instead of 16
 - Forth and back mouse buttons delete objects
 - More snap initially activated

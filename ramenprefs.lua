@@ -38,8 +38,8 @@ if config.platform ~= "apple" then
 end
 
 if config.platform == "apple" then
-    shortcuts.next_view = "Ctrl+tab"
-    shortcuts.previous_view = "Ctrl+Shift+tab"
+    shortcuts.next_view = "Control+\t"
+    shortcuts.previous_view = "Control+Shift+\t"
 else
     shortcuts.next_view = {"Ctrl+tab", "PgDown"}
     shortcuts.previous_view = {"Ctrl+Shift+tab", "PgUp"}
