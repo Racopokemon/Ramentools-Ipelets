@@ -22,6 +22,7 @@ shortcuts.paste_page = nil
 
 shortcuts.ungroup = "Ctrl+Shift+G"
 shortcuts.new_window = "Ctrl+N"
+shortcuts.edit_notes = nil --old ctrl-N command
 
 --hardly use it & rather annoying, so disabling these hotkeys
 shortcuts.set_origin = nil    --F1
