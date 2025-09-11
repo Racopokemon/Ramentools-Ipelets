@@ -1,5 +1,6 @@
 ## Future work
 - Make poly-tool remove not needed verts, if theres multiple in a row. On finish, so also between start and end
+    - Maybe also: Make `esc` finish instead of removing. 
 - Edittool - how hard is it to modify it?
     - Better way to create verts. Best would be to click anywhere on the line using snap. But, well. 
     - Make the shortcut for cycling between grid-sizes also work in edittool (but this might be problematic)
