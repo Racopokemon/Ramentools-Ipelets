@@ -22,6 +22,7 @@ shortcuts.paste_page = nil
 
 shortcuts.ungroup = "Ctrl+Shift+G"
 shortcuts.new_window = "Ctrl+N"
+shortcuts.edit_notes = nil --old ctrl-N command
 
 --hardly use it & rather annoying, so disabling these hotkeys
 shortcuts.set_origin = nil    --F1
@@ -30,6 +31,8 @@ shortcuts.set_line = nil      --F3
 
 shortcuts.style_sheets = "Ctrl+Shift+Y"
 shortcuts.save_as = "Ctrl+Shift+S"
+
+shortcuts.duplicate = nil --super weird if you don't know it and randomly theres stuff twice
 
 -- backspace, tab, enter etc. are introduced in the modified main.lua, without it they will not work on Windows. However, you can look up the keycodes here: https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
 -- backspace e.g. can be acessed using \b
@@ -62,3 +65,4 @@ prefs.initial_attributes.verticalalignment = "vcenter"
 
 mouse.button9 = "shredder"
 mouse.left_command = "stretch"
+mouse.left_control = "stretch"
