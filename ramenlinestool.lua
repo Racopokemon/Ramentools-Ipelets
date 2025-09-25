@@ -101,10 +101,10 @@ function _G.LINESTOOL:key(text, modifiers)
   if text == "backspace" or text == "delete" then -- this doesn't work :(
     self:delete()
     return true
-  elseif text == "\027" then
-    self.model.ui:finishTool()
-    return true
-  elseif text == " " or text == "enter" then -- enter doesnt work :(
+  --elseif text == "\027" then -- this is escape
+  --  self.model.ui:finishTool()
+  --  return true
+  elseif text == " " or text == "enter" or text == "\027" then -- enter doesnt work :(
     if self:last() == SPLINE then self:finish(false)
     elseif self:last() == VERTEX and #self.t > 2 and self.t[#self.t-1] == ARC then self:finish(false)
     else self:finish(true) end
