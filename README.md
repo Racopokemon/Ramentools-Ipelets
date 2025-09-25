@@ -1,21 +1,10 @@
 # Ramentools
-Small ipelets that make various quality of life-improvements to the drawing editor Ipe:
+Small ipelets that make various quality of life-improvements to the drawing editor [Ipe](https://github.com/otfried/ipe):
 
 **arrowkeymove**
 - Move the selection using arrow keys based on the gridsize (`Shift` for 1/4 steps)
 - Change gridsize with `Ctrl+Up / Down`
-
-**duplicatetool**
-- `Ctrl+D` to duplicate selection and paste at the cursor (hold `Shift` to stamp), all while keeping the *original layers*!
-
-**quickmenu**
-- `Ctrl+R` opens quick menu for recent files and after that rotate and mirror basics
-
-**layertool**
-- Cycle active layer with `Ctrl+Shift+Up / Down`
-- Toggle only active visible / all layers visible with `Ctrl+Shift+Right`
-- Toggle active layer visibility with `Ctrl+Shift+Left`
-- Activate layer of selection with `Ctrl+Space`
+- Cycle between elements with `Tab` and `Shift+Tab` (Windows only) and `N` and `Shift+N` (all platforms)
 
 **linestool**
 - Small optimizations in polygons, polylines and splines tool
@@ -25,6 +14,18 @@ Small ipelets that make various quality of life-improvements to the drawing edit
   - Avoids stacked vertices & single-vertex shapes in various cases
   - Creating a non-closed shape will not fill it
   - Finish by pressing space
+
+**duplicatetool**
+- `Ctrl+D` to duplicate selection and paste at the cursor (hold `Shift` to stamp), all while keeping the *original layers*!
+
+**layertool**
+- Cycle active layer with `Ctrl+Shift+Up / Down`
+- Toggle only active visible / all layers visible with `Ctrl+Shift+Right`
+- Toggle active layer visibility with `Ctrl+Shift+Left`
+- Activate layer of selection with `Ctrl+Space`
+
+**quickmenu**
+- `Ctrl+R` opens quick menu for recent files and after that rotate and mirror basics
 
 **prefs**
 - `Ctrl+Shift+C / V` for picking up and applying styles (replacing `Q` and `Ctrl+Q`)
@@ -49,7 +50,7 @@ Just copy the `.lua` files that you're interested in into the proper directory:
 - On Windows, create the directory `~/ipelets/`
 - On MacOS, create the directory `~/.ipe/ipelets/`
 
-The lua files in `replace in lua-directory` need (would you have guessed?) to be placed instead of the same-named files in the `lua` directory. 
+The lua files in `replace in lua-directory` need to be placed instead of the same-named files in the `lua` directory. 
 You'll find them 
 
 - usually in `C:/Program Files/ipe .../bin/lua/` on Windows

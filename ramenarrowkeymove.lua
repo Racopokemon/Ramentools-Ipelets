@@ -97,7 +97,12 @@ function select_next(model, num)
     next = methods[num].next
 
     local p = model:page()
-    
+    local vno = model.vno
+
+    if #p == 0 then
+        return
+    end
+
     if p:hasSelection() then
         p:ensurePrimarySelection()
         idx = p:primarySelection()
@@ -108,24 +113,31 @@ function select_next(model, num)
             idx = #p
         end
     end
-    model.ui:explain(idx)
-    --how u handle selections
---  for _,i in ipairs(selection) do
---    elements[#elements + 1] = p[i]:clone()
---  end
+    --model.ui:explain(idx) --used for debug
 
+    local start_index = idx    
+    repeat 
+        if next then
+            idx=idx-1
+            if idx < 1 then
+                idx = #p
+            end
+        else
+            idx=idx+1
+            if idx > #p then
+                idx = 1
+            end
+        end
 
-    --idx = 
-    -- if no selection: idx = first or last element
-    -- else 
-    -- selection=primaryselection or so
-
-
-
-    -- what if nothing is visible, we cant select anything? Note start index, if we reach it, return. 
-    --p:deselect_all()
-    --p:setSelect(idx, 1)
-    model.ui:update(false)
+        local layer = p:layerOf(idx)
+        if layer and p:visible(vno, layer) and not p:isLocked(layer) then
+            p:deselectAll()
+            p:setSelect(idx, 1) -- primary selection
+            model.ui:update(false)
+            return
+        end
+    until start_index == idx
+    -- only one accessible element, do nothing
 end
 
 methods = {
@@ -140,7 +152,9 @@ methods = {
     { label = "Move left 1/4", run = mov, dx = -0.25},
     { label = "Move right 1/4", run = mov, dx = 0.25},
     {label = "Select next element", run = select_next, next=true},
-    {label = "Select previous element", run = select_next, next=false}
+    {label = "Select next element (copy)", run = select_next, next=true},
+    {label = "Select previous element", run = select_next, next=false},
+    {label = "Select previous element (copy)", run = select_next, next=false}
 --    { label = "Test command", run = test},
 }
 
@@ -158,10 +172,12 @@ shortcuts.ipelet_10_ramenarrowkeymove = "Shift+Right"
 
 if config.platform == "win" then
     shortcuts.ipelet_11_ramenarrowkeymove = "tab"
-    shortcuts.ipelet_12_ramenarrowkeymove = "Shift+tab"
+    shortcuts.ipelet_13_ramenarrowkeymove = "Shift+tab"
 else
     shortcuts.ipelet_11_ramenarrowkeymove = "\t"
-    shortcuts.ipelet_12_ramenarrowkeymove = "Shift+\t"
+    shortcuts.ipelet_13_ramenarrowkeymove = "Shift+\t"
 end
+shortcuts.ipelet_12_ramenarrowkeymove = "N"
+shortcuts.ipelet_14_ramenarrowkeymove = "Shift+N"
 
 --shortcuts.ipelet_11_ramenarrowkeymove = "Ctrl+Shift+K" --that test one only

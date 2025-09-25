@@ -15,10 +15,11 @@
 
 ## Stuff that would require work in C++
 - Look for ipelets also in subfolders (the lua interface does not provide a way to identify dirs / iterate through them, so this is required first)
-- Multiple shortcuts possible, I need that xD (on OSX)
+- Multiple shortcuts possible for MacOS like the other platforms, I need that
+- Make 'tab' and 'shift+tab' input recognized on MacOS
 - Double click things to edit them (texts, Polylines)
 - Double click empty place on page to draw polyline (or other tool)
-- Better select tool! To be comprehensible for unfamiliar users, the default AABB with knobs for scaling all around would be useful
+- Better select tool! To be comprehensible for unfamiliar users, the default AABB with knobs for scaling all around would be a game-changer
 - In the same way, the fill- and stroke buttons with a dropdown option would help new users - also putting the no fill / stroke options there. 
 - Move the opacity settings visually closer to the fill and stroke color
 - Make icons next to the "normal" "normal" dropdows so that its clear that this is thickness and dashes
