@@ -3,7 +3,9 @@
 ------------------------------------------------------------
 -- Ctrl+R opens a context menu at the cursor to open 
 -- recent files & flip and rotate if theres a selection
--- Shift+5 to select opacities
+-- Shift+5, Ctrl+Shift+5, Ctrl+Shift+T, Ctrl+Shift+W, 
+-- Ctrl+Shift+D to set opacity, stroke opacity, tiling, pen 
+-- width, dashing
 ------------------------------------------------------------
 
 -- Place this file in ...
@@ -11,7 +13,7 @@
 -- %userprofile%/ipelets/ (on Windows)
 
 label = "Ramen quick menues"
-about = "Open recent files & do rotations and flips with Ctrl+R, change opacities with Shift+5"
+about = "Open recent files & do rotations and flips with Ctrl+R, quick menus for opacities, line & tiling properties"
 
 function is_empty_doc(model)
     return #model:page() == 0 and #model.doc == 1 --0 elements and one page

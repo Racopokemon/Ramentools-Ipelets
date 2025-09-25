@@ -26,7 +26,11 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 
 **quickmenu**
 - `Ctrl+R` opens quick menu for recent files and after that rotate and mirror basics
-- `Shift+5` (= the `%` button) to open a opacity menu
+- `Shift+5` (= the `%` button) to opens opacity menu
+- `Ctrl+Shift+5` opens stroke opacity menu
+- `Ctrl+Shift+T` opens tiling menu
+- `Ctrl+Shift+W` opens pen width menu
+- `Ctrl+Shift+D` opens pen dash menu
 
 **prefs**
 - `Ctrl+Shift+C / V` for picking up and applying styles (replacing `Q` and `Ctrl+Q`)
