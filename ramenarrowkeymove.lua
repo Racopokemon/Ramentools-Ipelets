@@ -3,6 +3,7 @@
 ------------------------------------------------------------
 -- Move objects with arrow keys (copied from existing 
 -- ipelet) and change grid size 
+-- Cycle between elements with (Shift)+Tab and (Shift)+N
 ------------------------------------------------------------
 
 -- Place this file in ...

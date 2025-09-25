@@ -3,20 +3,21 @@
 ------------------------------------------------------------
 -- Ctrl+R opens a context menu at the cursor to open 
 -- recent files & flip and rotate if theres a selection
+-- Shift+5 to select opacities
 ------------------------------------------------------------
 
 -- Place this file in ...
 -- ~/.ipe/ipelets/ (on Mac)
 -- %userprofile%/ipelets/ (on Windows)
 
-label = "Quick menu"
-about = "Open recent files & do rotations and flips with Ctrl+R"
+label = "Ramen quick menues"
+about = "Open recent files & do rotations and flips with Ctrl+R, change opacities with Shift+5"
 
 function is_empty_doc(model)
     return #model:page() == 0 and #model.doc == 1 --0 elements and one page
 end
 
-function run(model)
+function quick_menu(model, num)
     m = ipeui.Menu(model.ui:win())
     for i, j in pairs(model.recent_files) do
         m:add("o" .. j, j)
@@ -59,7 +60,38 @@ function run(model)
     end
 end
 
+function opacity_menu(model, num)
+    -- Get the current attributes and available opacities from the style sheets
+    local sheet = model.doc:sheets()
+    local opacities = sheet:allNames("opacity")
+    if #opacities == 0 then return end
+
+    local m = ipeui.Menu(model.ui:win())
+    for _, opacity in ipairs(opacities) do
+        m:add(opacity, opacity)
+    end
+
+    -- Get mouse position for menu popup
+    local mouse = model.ui:globalPos()
+    local x, y = mouse.x, mouse.y
+    if x < 1 or x > 100000 then x = 0 end
+    if y < 1 or y > 100000 then y = 0 end
+
+    local item = m:execute(math.floor(x), math.floor(y))
+    if item then
+        -- Set the opacity attribute for the selection
+        model:selector("opacity", item)
+    end
+end
+
+methods = {
+    { label = "Quick menu", run = quick_menu},
+    { label = "Opacity menu", run = opacity_menu}
+}
+
+
 shortcuts.ipelet_1_ramenquickmenu = "Ctrl+R"
-shortcuts.ipelet_8_goodies = nil -- Precise rotate
+shortcuts.ipelet_2_ramenquickmenu = "Shift+5"
+shortcuts.ipelet_8_goodies = nil -- Precise rotate (was Ctrl+R before)
 --shortcuts.ipelet_8_goodies = "Ctrl+Shift+R" Precise rotate
 --shortcuts.rename_active_layer = "F2"
