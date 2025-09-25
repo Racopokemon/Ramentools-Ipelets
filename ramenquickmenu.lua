@@ -66,6 +66,8 @@ function opacity_menu(model, num)
     local opacities = sheet:allNames("opacity")
     if #opacities == 0 then return end
 
+    table.sort(opacities)
+
     local m = ipeui.Menu(model.ui:win())
     for _, opacity in ipairs(opacities) do
         m:add(opacity, opacity)
