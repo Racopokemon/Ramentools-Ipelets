@@ -60,13 +60,18 @@ function quick_menu(model, num)
     end
 end
 
-function opacity_menu(model, num)
+function attribute_menu(model, num)
+    attr = methods[num].attr
+    name_in_sheet = methods[num].name_in_sheet
+
     -- Get the current attributes and available opacities from the style sheets
     local sheet = model.doc:sheets()
-    local opacities = sheet:allNames("opacity")
+    local opacities = sheet:allNames(name_in_sheet)
     if #opacities == 0 then return end
 
-    table.sort(opacities)
+    if methods[num].sort then
+        table.sort(opacities)
+    end
 
     local m = ipeui.Menu(model.ui:win())
     for _, opacity in ipairs(opacities) do
@@ -82,18 +87,26 @@ function opacity_menu(model, num)
     local item = m:execute(math.floor(x), math.floor(y))
     if item then
         -- Set the opacity attribute for the selection
-        model:selector("opacity", item)
+        model:selector(attr, item)
     end
 end
 
 methods = {
     { label = "Quick menu", run = quick_menu},
-    { label = "Opacity menu", run = opacity_menu}
+    { label = "Opacity menu", run = attribute_menu, attr="opacity", name_in_sheet="opacity", sort=true},
+    { label = "Stroke opacity menu", run = attribute_menu, attr="strokeopacity", name_in_sheet="opacity", sort=true},
+    { label = "Tiling menu", run = attribute_menu, attr="tiling", name_in_sheet="tiling", sort=false},
+    { label = "Pen width menu", run = attribute_menu, attr="pen", name_in_sheet="pen", sort=false},
+    { label = "Pen dash menu", run = attribute_menu, attr="dashstyle", name_in_sheet="dashstyle", sort=false}
 }
 
 
 shortcuts.ipelet_1_ramenquickmenu = "Ctrl+R"
-shortcuts.ipelet_2_ramenquickmenu = "Shift+5"
+shortcuts.ipelet_2_ramenquickmenu = "Shift+5" -- opacity
+shortcuts.ipelet_3_ramenquickmenu = "Ctrl+Shift+5" -- stroke opacity
+shortcuts.ipelet_4_ramenquickmenu = "Ctrl+Shift+T" -- tiling
+shortcuts.ipelet_5_ramenquickmenu = "Ctrl+Shift+W" -- pen width
+shortcuts.ipelet_6_ramenquickmenu = "Ctrl+Shift+D" -- pen dash
 shortcuts.ipelet_8_goodies = nil -- Precise rotate (was Ctrl+R before)
 --shortcuts.ipelet_8_goodies = "Ctrl+Shift+R" Precise rotate
 --shortcuts.rename_active_layer = "F2"

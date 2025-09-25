@@ -7,6 +7,7 @@
 - Silent layer removal etc. - right now we get warnings, but we could also just select the next layer when removing the active layer. 
 - Make the 2nd call of F1, F2 and F3 hide the axis (better solution than just removing the shortcuts)
 - Having boolean and and offset tools would make the software even more powerful ... but welllll xD
+- For importing stylesheets, sort opacitiy entries (and probably stroke sizes etc) by values
 
 ## Work that requires modifying the internal .lua scripts
 *Nothing, currently*
