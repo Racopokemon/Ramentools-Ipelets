@@ -79,11 +79,18 @@ function attribute_menu(model, num)
     local m = ipeui.Menu(model.ui:win())
 
     local prim = model:page():primarySelection()
+    if not prim then
+        return
+    end
+
     local current_value = model:page()[prim]:get(attr)
-    m:add("Current: "..current_value, "")
 
     for _, opacity in ipairs(opacities) do
-        m:add(opacity, opacity)
+        if opacity == current_value then
+            m:add(opacity, "> " .. opacity)
+        else
+            m:add(opacity, opacity)
+        end
     end
 
     -- Get mouse position for menu popup
@@ -93,7 +100,6 @@ function attribute_menu(model, num)
     if y < 1 or y > 100000 then y = 0 end
 
     local item = m:execute(math.floor(x), math.floor(y))
-    xertfcgzvhunijokmpl,errtfzgvuinjomk,pl.öü
     if item and item ~= nil then
         -- Set the opacity attribute for the selection
         model:selector(attr, item)
