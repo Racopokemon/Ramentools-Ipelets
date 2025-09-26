@@ -73,9 +73,15 @@ function attribute_menu(model, num)
 
     if methods[num].sort then
         table.sort(opacities)
+        -- model.doc:sheets():find(btype, old) this might be the key to sorting by value, not name
     end
 
     local m = ipeui.Menu(model.ui:win())
+
+    local prim = model:page():primarySelection()
+    local current_value = model:page()[prim]:get(attr)
+    m:add("Current: "..current_value, "")
+
     for _, opacity in ipairs(opacities) do
         m:add(opacity, opacity)
     end
@@ -87,7 +93,8 @@ function attribute_menu(model, num)
     if y < 1 or y > 100000 then y = 0 end
 
     local item = m:execute(math.floor(x), math.floor(y))
-    if item then
+    xertfcgzvhunijokmpl,errtfzgvuinjomk,pl.öü
+    if item and item ~= nil then
         -- Set the opacity attribute for the selection
         model:selector(attr, item)
     end
