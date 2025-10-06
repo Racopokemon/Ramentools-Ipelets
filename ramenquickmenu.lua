@@ -64,16 +64,20 @@ end
 
 function attribute_menu(model, num)
     attr = methods[num].attr
-    name_in_sheet = methods[num].name_in_sheet
+    name_in_sheet = attr
+    if attr == "strokeopacity" then name_in_sheet = "opacity" end
 
-    -- Get the current attributes and available opacities from the style sheets
+    -- Get the current attributes and available values from the style sheets
     local sheet = model.doc:sheets()
-    local opacities = sheet:allNames(name_in_sheet)
-    if #opacities == 0 then return end
+    local values = sheet:allNames(name_in_sheet)
+    if #values == 0 then return end
 
-    if methods[num].sort then
-        table.sort(opacities)
-        -- model.doc:sheets():find(btype, old) this might be the key to sorting by value, not name
+    if name_in_sheet == "opacity" or name_in_sheet == "pen" then
+        table.sort(values, function(a, b)
+            local aval = sheet:find(name_in_sheet, a)
+            local bval = sheet:find(name_in_sheet, b)
+            return aval < bval
+        end)
     end
 
     local m = ipeui.Menu(model.ui:win())
@@ -86,14 +90,14 @@ function attribute_menu(model, num)
     local current_value = model:page()[prim]:get(attr)
 
     if attr == "tiling" then
-        table.insert(opacities, 1, "normal")
+        table.insert(values, 1, "normal")
     end
 
-    for _, opacity in ipairs(opacities) do
-        if opacity == current_value then
-            m:add(opacity, "> " .. opacity)
+    for _, value in ipairs(values) do
+        if value == current_value then
+            m:add(value, "> " .. value)
         else
-            m:add(opacity, opacity)
+            m:add(value, value)
         end
     end
 
@@ -105,18 +109,18 @@ function attribute_menu(model, num)
 
     local item = m:execute(math.floor(x), math.floor(y))
     if item and item ~= nil then
-        -- Set the opacity attribute for the selection
+        -- Set the attribute for the selection
         model:selector(attr, item)
     end
 end
 
 methods = {
     { label = "Quick menu", run = quick_menu},
-    { label = "Opacity menu", run = attribute_menu, attr="opacity", name_in_sheet="opacity", sort=true},
-    { label = "Stroke opacity menu", run = attribute_menu, attr="strokeopacity", name_in_sheet="opacity", sort=true},
-    { label = "Tiling menu", run = attribute_menu, attr="tiling", name_in_sheet="tiling", sort=false},
-    { label = "Pen width menu", run = attribute_menu, attr="pen", name_in_sheet="pen", sort=false},
-    { label = "Pen dash menu", run = attribute_menu, attr="dashstyle", name_in_sheet="dashstyle", sort=false}
+    { label = "Opacity menu", run = attribute_menu, attr="opacity"},
+    { label = "Stroke opacity menu", run = attribute_menu, attr="strokeopacity"},
+    { label = "Tiling menu", run = attribute_menu, attr="tiling"},
+    { label = "Pen width menu", run = attribute_menu, attr="pen"},
+    { label = "Pen dash menu", run = attribute_menu, attr="dashstyle"}
 }
 
 
