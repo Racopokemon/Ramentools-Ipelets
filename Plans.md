@@ -3,7 +3,6 @@
 - Edittool - how hard is it to modify it?
     - Better way to create verts. Best would be to click anywhere on the line using snap. But, well. 
     - Make the shortcut for cycling between grid-sizes also work in edittool (but this might be problematic)
-- The tiling quick menu does not yet offer the 'normal' tiling pattern! 
 - Silent layer removal etc. - right now we get warnings, but we could also just select the next layer when removing the active layer. 
 - Make the 2nd call of F1, F2 and F3 hide the axis (better solution than just removing the shortcuts)
 - Having boolean and and offset tools would make the software even more powerful ... but welllll xD
