@@ -85,6 +85,10 @@ function attribute_menu(model, num)
 
     local current_value = model:page()[prim]:get(attr)
 
+    if attr == "tiling" then
+        table.insert(opacities, 1, "normal")
+    end
+
     for _, opacity in ipairs(opacities) do
         if opacity == current_value then
             m:add(opacity, "> " .. opacity)
