@@ -10,9 +10,9 @@
 -- %userprofile%/ipelets/ (on Windows)
 
 label = "Duplicate at cursor"
-about = "by Ramen (who told claude AI to do the work)"
+about = "by Ramen (who told claude to do the work)"
     --- the code worked at an instant except for one . that was mistaken for a : 
-    --- Also, it guessed that p:layerOf(i) exists, that was not in the original code
+    --- Also, it guessed that p:layerOf(i) exists, which was not in the original code
 
 DUPLICATETOOL = {}
 DUPLICATETOOL.__index = DUPLICATETOOL
@@ -26,6 +26,8 @@ function DUPLICATETOOL:new(model, selection)
   local p = model:page()
   tool.elements = {}
   tool.layers = {}
+
+  tool.stamps = 0
   
   for _,i in ipairs(selection) do
     tool.elements[#tool.elements+1] = p[i]:clone()
@@ -57,11 +59,25 @@ end
 
 function DUPLICATETOOL:mouseButton(button, modifiers, press)
   if not press then return end
+
+  if button == 2 then -- right click, remove stamp or finish
+    if self.stamps > 0 then
+      self.model:action_undo()
+      self.stamps = self.stamps - 1
+    else 
+      self.model.ui:finishTool()
+      return
+    end
+    return
+  end
+
   local continue = modifiers.control or modifiers.shift or modifiers.command
 
   if not continue then
     self.model.ui:finishTool()
   end
+
+  self.stamps = self.stamps + 1
 
   self:computeTranslation()
   
