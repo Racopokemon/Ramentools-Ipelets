@@ -28,6 +28,7 @@ function DUPLICATETOOL:new(model, selection)
   tool.layers = {}
 
   tool.stamps = 0
+  tool.array = 0
   
   for _,i in ipairs(selection) do
     tool.elements[#tool.elements+1] = p[i]:clone()
@@ -50,10 +51,10 @@ end
 function DUPLICATETOOL:computeTranslation()
   self.translation = self.model.ui:pos() - self.start
   if self.pinned == "horizontal" or self.pinned == "fixed" then
-    self.translation = V(0, self.translation.y)
+    self.translation = ipe.Vector(0, self.translation.y)
   end
   if self.pinned == "vertical" or self.pinned == "fixed" then
-    self.translation = V(self.translation.x, 0)
+    self.translation = ipe.Vector(self.translation.x, 0)
   end
 end
 
@@ -64,6 +65,7 @@ function DUPLICATETOOL:mouseButton(button, modifiers, press)
     if self.stamps > 0 then
       self.model:action_undo()
       self.stamps = self.stamps - 1
+      self.array = 0
     else 
       self.model.ui:finishTool()
       return
@@ -79,8 +81,10 @@ function DUPLICATETOOL:mouseButton(button, modifiers, press)
 
   self.stamps = self.stamps + 1
 
-  self:computeTranslation()
-  
+  if self.array <= 1 then
+    self:computeTranslation()
+  end
+
   local p = self.model:page()
   local pLayers = p:layers()
   local active = p:active(self.model.vno)
@@ -140,12 +144,27 @@ function DUPLICATETOOL:mouseButton(button, modifiers, press)
   
   --self.model:page():deselectAll()
   self.model:register(t) --on undo, register restores the selection from the state here rn, so we dont want a deselect here! 
-  if not contiue then
+  if continue then
+    self.array = self.array + 1
+    if self.array == 1 then
+      self.prevStampPos = self.model.ui:pos()
+    elseif self.array > 1 then
+      --suggest next stamp in same distance as first 2
+      local diff = self.model.ui:pos() - self.prevStampPos
+      self.model.ui:explain("lol "..diff.x.." "..self.model.ui:pos().x.." "..self.prevStampPos.y)
+      self.translation = self.translation + diff
+      self.setMatrix(ipe.Translation(self.translation))
+      self.model.ui:update(false)
+    end
+  else
     self.model:autoRunLatex()
   end
 end
 
 function DUPLICATETOOL:mouseMove()
+  if self.array > 1 then
+    self.array = 0
+  end
   self:computeTranslation()
   self.setMatrix(ipe.Translation(self.translation))
   self.model.ui:update(false) -- update tool
