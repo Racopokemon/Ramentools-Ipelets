@@ -29,6 +29,7 @@ function DUPLICATETOOL:new(model, selection)
 
   tool.stamps = 0
   tool.array = 0
+  tool.arraySuggested = false
   
   for _,i in ipairs(selection) do
     tool.elements[#tool.elements+1] = p[i]:clone()
@@ -145,16 +146,18 @@ function DUPLICATETOOL:mouseButton(button, modifiers, press)
   --self.model:page():deselectAll()
   self.model:register(t) --on undo, register restores the selection from the state here rn, so we dont want a deselect here! 
   if continue then
-    self.array = self.array + 1
-    if self.array == 1 then
-      self.prevStampPos = self.model.ui:pos()
-    elseif self.array > 1 then
-      --suggest next stamp in same distance as first 2
-      local diff = self.model.ui:pos() - self.prevStampPos
-      self.model.ui:explain("lol "..diff.x.." "..self.model.ui:pos().x.." "..self.prevStampPos.y)
-      self.translation = self.translation + diff
-      self.setMatrix(ipe.Translation(self.translation))
-      self.model.ui:update(false)
+    if not self.arraySuggested then 
+      self.array = self.array + 1
+      if self.array == 1 then
+        self.prevStampPos = self.model.ui:pos()
+      elseif self.array > 1 then
+        --suggest next stamp in same distance as first 2
+        local diff = self.model.ui:pos() - self.prevStampPos
+        self.model.ui:explain("lol "..diff.x.." "..self.model.ui:pos().x.." "..self.prevStampPos.y)
+        self.translation = self.translation + diff
+        self.setMatrix(ipe.Translation(self.translation))
+        self.model.ui:update(false)
+      end
     end
   else
     self.model:autoRunLatex()
@@ -164,6 +167,7 @@ end
 function DUPLICATETOOL:mouseMove()
   if self.array > 1 then
     self.array = 0
+    self.arraySuggested = true
   end
   self:computeTranslation()
   self.setMatrix(ipe.Translation(self.translation))
