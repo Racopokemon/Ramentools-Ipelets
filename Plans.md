@@ -5,12 +5,16 @@
     - Make the shortcut for cycling between grid-sizes also work in edittool (but this might be problematic)
 - Silent layer removal etc. - right now we get warnings, but we could also just select the next layer when removing the active layer. 
 - Make the 2nd call of F1, F2 and F3 hide the axis (better solution than just removing the shortcuts)
-- Having boolean and and offset tools would make the software even more powerful ... but welllll xD
+- (Maybe) have arrow keys in duplicate tool also work along the size grid (including shift? I think shift is not supported in tools)
+- One could think to make Ctrl+Shift+A first switch to the layer of the current selection (if there is one). Similarily, Ctrl+Shift+C should also pick the layer? Or, Ctrl+Space should also pick properties. 
+    - Make Ctrl+Shift+Space select current layer and pick properties
+- Right now I am missing a "pick all with same properties" that might be placed at Shift+Alt+A - but this is not that easy. Should we compare all properties? Also filled and unfilled? Texts, Paragraphs and Marks are separate classes, probably. Maybe go several stages, if there is no other mark exactly the same, select all marks? If there are no other texts of same color, select all texts? ...
+- Ctrl+Shift+Left / Right are still unintuitive. I want to select less going to the left, and select more going to the right. 
 - One could rework Polyfillet ...
     - Replace shape instead of adding new shape
     - Use old properties instead of the currently selected ones
     - Keep in the same layer
-- One could think to make Ctrl+Shift+A first switch to the layer of the current selection. Similarily, Ctrl+Shift+C should also pick the layer?
+- Having boolean and and offset tools would make the software even more powerful ... but welllll xD
 
 ## Work that requires modifying the internal .lua scripts
 *Nothing, currently*
