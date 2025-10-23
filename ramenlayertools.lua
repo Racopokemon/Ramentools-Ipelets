@@ -131,9 +131,13 @@ methods = {
     { label = "Activate Layer & Pick Properties", run = match_layer_and_pick_properties}
 }
 
-shortcuts.ipelet_1_ramenlayertools = "Ctrl+space" -- works for windows. Does it also work for mac?
+shortcuts.ipelet_1_ramenlayertools = "Ctrl+ "
 shortcuts.ipelet_2_ramenlayertools = "Ctrl+Shift+Down"
 shortcuts.ipelet_3_ramenlayertools = "Ctrl+Shift+Up"
 shortcuts.ipelet_4_ramenlayertools = "Ctrl+Shift+Left" 
 shortcuts.ipelet_5_ramenlayertools = "Ctrl+Shift+Right"
-shortcuts.ipelet_6_ramenlayertools = "Ctrl+Shift+space"
+if config.platform == "win" then
+  shortcuts.ipelet_6_ramenlayertools = "Ctrl+Shift+space" --for weird reasons, "Ctrl+ " works on windows but "Ctrl+Shift+ " doesnt work. ("Shift+ " works...)
+else
+  shortcuts.ipelet_6_ramenlayertools = "Ctrl+Shift+ "
+end
