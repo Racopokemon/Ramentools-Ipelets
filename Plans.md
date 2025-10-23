@@ -9,6 +9,8 @@
 - One could think to make Ctrl+Shift+A first switch to the layer of the current selection (if there is one). Similarily, Ctrl+Shift+C should also pick the layer? Or, Ctrl+Space should also pick properties. 
     - Make Ctrl+Shift+Space select current layer and pick properties
 - Right now I am missing a "pick all with same properties" that might be placed at Shift+Alt+A - but this is not that easy. Should we compare all properties? Also filled and unfilled? Texts, Paragraphs and Marks are separate classes, probably. Maybe go several stages, if there is no other mark exactly the same, select all marks? If there are no other texts of same color, select all texts? ...
+    - There is a preinstalled ipelet that selects all of same kind? Check it out first!
+- The quickmenu sorts entries by values and indicates (with a >) the current value. Turns out you CAN edit the context menu in the properties.lua <- apply these fixes also there! 
 - Ctrl+Shift+Left / Right are still unintuitive. I want to select less going to the left, and select more going to the right. 
 - One could rework Polyfillet ...
     - Replace shape instead of adding new shape

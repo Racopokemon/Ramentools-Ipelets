@@ -27,6 +27,15 @@ function match_layer(model, num)
   model:layeraction_active(layer)
 end
 
+function match_layer_and_pick_properties(model, num)
+  if not model:page():primarySelection() then
+    model.ui:explain("no primary selection")
+    return
+  end
+  match_layer(model, num)
+  model:saction_pick_properties()
+end
+
 function cycle_layers(model, num)
     local p = model:page()
     local active = p:active(model.vno)
@@ -118,12 +127,13 @@ methods = {
     { label = "Activate Next Layer", run = cycle_layers, back = false},
     { label = "Activate Prev Layer", run = cycle_layers, back = true},
     { label = "Toggle Layer Visibility", run = toggle_layer_vis},
-    { label = "Toggle Layer Solo", run = toggle_layer_solo}
+    { label = "Toggle Layer Solo", run = toggle_layer_solo},
+    { label = "Activate Layer & Pick Properties", run = match_layer_and_pick_properties}
 }
 
-shortcuts.ipelet_1_ramenlayertools = "Ctrl+ "
+shortcuts.ipelet_1_ramenlayertools = "Ctrl+space" -- works for windows. Does it also work for mac?
 shortcuts.ipelet_2_ramenlayertools = "Ctrl+Shift+Down"
 shortcuts.ipelet_3_ramenlayertools = "Ctrl+Shift+Up"
--- for my own shitty setup, you should *really* switch to the commented variants, it only makes sense
 shortcuts.ipelet_4_ramenlayertools = "Ctrl+Shift+Left" 
-shortcuts.ipelet_5_ramenlayertools = "Ctrl+Shift+Right"  
+shortcuts.ipelet_5_ramenlayertools = "Ctrl+Shift+Right"
+shortcuts.ipelet_6_ramenlayertools = "Ctrl+Shift+space"
