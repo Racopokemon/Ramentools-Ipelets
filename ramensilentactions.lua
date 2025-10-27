@@ -1,8 +1,8 @@
 ------------------------------------------------------------
 -- Ramentools - some quality-of-life improvements for ipe --
 ------------------------------------------------------------
--- Duplicate at mouse & keep layers-tool with Ctrl+D
--- Shift or Ctrl to create stamps
+-- Silent actions
+-- Reduce some warnings when deleting layers etc.
 ------------------------------------------------------------
 
 -- Place this file in Ipe’s configuration folder
@@ -13,40 +13,67 @@
 
 
 
-
-
---label = "Silent actions"
---about = "Reduce some warnings when deleting layers etc."
-
--- Helper function: Switch active layer in all views from 'layer' to a free (unlocked) layer
-local function switchActiveLayerInViews(page, layer)
+-- Helper function: Get the first available (unlocked) layer before the given layer
+function getAlternativeLayer(page, layer)
   local layers = page:layers()
-  local freeLayer = nil
-  for _, l in ipairs(layers) do
-    if l ~= layer and not page:isLocked(l) then
-      freeLayer = l
+  local idx = nil
+  for i, l in ipairs(layers) do
+    if l == layer then
+      idx = i
       break
     end
   end
-  if not freeLayer then return end
+  if not idx then return nil end
+  -- Search before
+  for i = idx - 1, 1, -1 do
+    local l = layers[i]
+    if not page:isLocked(l) then
+      return l
+    end
+  end
+  -- Search after
+  for i = idx + 1, #layers do
+    local l = layers[i]
+    if not page:isLocked(l) then
+      return l
+    end
+  end
+  return nil
+end
+
+-- Helper function: Switch active layer in all views from 'layer' to a free (unlocked) layer before it
+-- returns a conflicting view if it cannot switch (very special case)
+function switchActiveLayerInViews(page, layer)
+  local freeLayer = getAlternativeLayer(page, layer)
   for v = 1, page:countViews() do
     if page:active(v) == layer then
+      if not freeLayer then return v end
       page:setActive(v, freeLayer)
     end
   end
+  return -1
 end
 
--- Adapted layeraction_delete
-function MODEL:layeraction_delete(layer)
+-- Silent layeraction_delete
+function _G.MODEL:layeraction_delete(layer)
   local p = self:page()
-  switchActiveLayerInViews(p, layer)
   local t = { label="delete layer " .. layer,
           pno=self.pno,
           vno=self.vno,
           original=p:clone(),
           layer=layer,
-          undo=revertOriginal
+          undo=_G.revertOriginal
         }
+  
+  --bit unclean code, but should be alright. We call it twice, so redo() call doesnt do stuff or we know from here that it always works. 
+  local conflictLayer = switchActiveLayerInViews(p, t.layer)
+  if conflictLayer ~= -1 then
+      self:warning("Cannot delete layer '" .. layer .. "'.",
+		   "Layer '" .. layer .. "' is the active layer of view "
+		     .. conflictLayer .. ".")
+    return
+  end
+
   t.redo = function (t, doc)
     local p = doc[t.pno]
     switchActiveLayerInViews(p, t.layer)
@@ -61,7 +88,7 @@ function MODEL:layeraction_delete(layer)
 end
 
 -- Adapted layeraction_lock
-function MODEL:layeraction_lock(layer, arg)
+function _G.MODEL:layeraction_lock(layer, arg)
   local p = self:page()
   if arg then
     switchActiveLayerInViews(p, layer)
