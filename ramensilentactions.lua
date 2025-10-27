@@ -2,7 +2,7 @@
 -- Ramentools - some quality-of-life improvements for ipe --
 ------------------------------------------------------------
 -- Silent actions
--- Reduce some warnings when deleting layers etc.
+-- Reduce some warnings when deleting & locking layers etc.
 ------------------------------------------------------------
 
 -- Place this file in Ipe’s configuration folder
@@ -12,21 +12,21 @@
 -- on Windows, the file must be placed in the program folder, there already exists a sub-folder named ipelets. 
 
 -- Helper function (way too complicated): Get the first available (unlocked) layer before the given layer
-function getAlternativeLayer(page, layer)
+function getAlternativeLayer(page, layer, vno, call)
   local layers = page:layers()
   local idx = _G.indexOf(layer, layers)
   if not idx then return nil end
   -- Search before
   for i = idx - 1, 1, -1 do
     local l = layers[i]
-    if not page:isLocked(l) then
+    if call(page,l,vno) then
       return l
     end
   end
   -- Search after
   for i = idx + 1, #layers do
     local l = layers[i]
-    if not page:isLocked(l) then
+    if call(page,l,vno) then
       return l
     end
   end
@@ -36,7 +36,10 @@ end
 -- Helper function: Switch active layer in all views from 'layer' to a free (unlocked) layer before it
 -- returns a conflicting view if it cannot switch (very special case)
 function switchActiveLayerInViews(page, layer)
-  local freeLayer = getAlternativeLayer(page, layer)
+  function call(page, layer, arg)
+    return not page:isLocked(layer)
+  end
+  local freeLayer = getAlternativeLayer(page, layer, nil, call)
   for v = 1, page:countViews() do
     if page:active(v) == layer then
       if not freeLayer then return v end
@@ -123,4 +126,35 @@ function _G.MODEL:layeraction_lock(layer, arg)
   self:register(t)
   self:deselectNotInView()
   self:setPage()
+end
+
+-- injecting a better creation 
+-- if theres any enabled layer, place there instead. 
+-- If there is none, make layer visible first. 
+function _G.MODEL:creation(label, obj)
+  local p = self:page()
+  local active = p:active(self.vno)
+
+  local t = { label=label, pno=self.pno, vno=self.vno,
+        layer=self:page():active(self.vno), object=obj }
+  
+  if not p:visible(self.vno, active) then
+    function call(page, layer, vno)
+      return page:visible(self.vno, layer)
+    end
+    local alt = getAlternativeLayer(p, active, self.vno, call)
+    if alt then
+      t.layer = alt
+      self:layeraction_active(alt)
+    else
+      self:layeraction_select(active, true)
+    end
+  end
+
+  t.undo = function (t, doc) doc[t.pno]:remove(#doc[t.pno]) end
+  t.redo = function (t, doc)
+	     doc[t.pno]:deselectAll()
+	     doc[t.pno]:insert(nil, t.object, 1, t.layer)
+	   end
+  self:register(t)
 end
