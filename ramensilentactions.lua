@@ -11,18 +11,10 @@
 -- On MacOS, it is ~/.ipe/ipelets/, 
 -- on Windows, the file must be placed in the program folder, there already exists a sub-folder named ipelets. 
 
-
-
--- Helper function: Get the first available (unlocked) layer before the given layer
+-- Helper function (way too complicated): Get the first available (unlocked) layer before the given layer
 function getAlternativeLayer(page, layer)
   local layers = page:layers()
-  local idx = nil
-  for i, l in ipairs(layers) do
-    if l == layer then
-      idx = i
-      break
-    end
-  end
+  local idx = _G.indexOf(layer, layers)
   if not idx then return nil end
   -- Search before
   for i = idx - 1, 1, -1 do

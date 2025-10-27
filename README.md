@@ -25,6 +25,11 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - Activate layer of selection with `Ctrl+Space`
 - Activate layer of selection & pick properties with `Ctrl+Shift+Space`
 
+**silentactions**
+- Silently deleting layers: If the layer was active in some views, it is silently changed to a different view before deleting (instead of showing an error message)
+- Silently locking layers: Analogously, change active views before locking a layer
+- Silently creating shapes: If created on a hidden layer, make the layer visible before creating the shape there
+
 **quickmenu**
 - `Ctrl+R` opens quick menu for recent files and after that rotate and mirror basics
 - `Shift+5` (= the `%` button) to opens opacity menu
