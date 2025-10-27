@@ -46,7 +46,7 @@ function switchActiveLayerInViews(page, layer)
   return -1
 end
 
--- Silent layeraction_delete
+-- Overwriting layeraction_delete to delete silently
 function _G.MODEL:layeraction_delete(layer)
   local p = self:page()
   local t = { label="delete layer " .. layer,
@@ -79,11 +79,13 @@ function _G.MODEL:layeraction_delete(layer)
   self:register(t)
 end
 
--- Adapted layeraction_lock
+-- Overwriting layeraction_lock to lock silently
 function _G.MODEL:layeraction_lock(layer, arg)
   local p = self:page()
-  if arg then
-    switchActiveLayerInViews(p, layer)
+  local activeViews = {}
+
+  for v = 1, p:countViews() do
+    activeViews[v]=p:active(v)
   end
   local t = { label="set locking of layer " .. layer,
           pno=self.pno,
@@ -91,21 +93,33 @@ function _G.MODEL:layeraction_lock(layer, arg)
           layer=layer,
           original=p:isLocked(layer),
           locked=arg,
+          activeViews=activeViews
         }
+  
+  if arg then 
+    local conflictLayer = switchActiveLayerInViews(p, layer)
+    if conflictLayer ~= -1 then
+      self:warning("Cannot lock layer '" .. layer .. "'.",
+        "Layer '" .. layer .. "' is the active layer of view "
+          .. conflictLayer .. ".")
+      return
+    end
+  end
+
   t.undo = function (t, doc)
-    local p = doc[t.pno]
-    if t.locked then
-      switchActiveLayerInViews(p, t.layer)
-    end
-    p:setLocked(t.layer, t.original)
-  end
+       local p = doc[t.pno]
+	     p:setLocked(t.layer, t.original)
+       for v = 1, p:countViews() do
+        p:setActive(v, t.activeViews[v])
+       end
+	   end
   t.redo = function (t, doc)
-    local p = doc[t.pno]
-    if t.locked then
-      switchActiveLayerInViews(p, t.layer)
-    end
-    p:setLocked(t.layer, t.locked)
-  end
+       local p = doc[t.pno]
+       if t.locked then
+        switchActiveLayerInViews(p, t.layer) -- we know it works, we tried above
+       end
+	     p:setLocked(t.layer, t.locked)
+	   end
   self:register(t)
   self:deselectNotInView()
   self:setPage()
