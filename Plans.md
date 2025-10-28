@@ -1,9 +1,9 @@
 ## Future work
 - Make poly-tool remove not needed verts, if theres multiple in a row. On finish, so also between start and end
+- I'd like to have A and A, A select all and nothing, like in blender. 
 - Edittool - how hard is it to modify it?
     - Better way to create verts. Best would be to click anywhere on the line using snap. But, well. 
     - Make the shortcut for cycling between grid-sizes also work in edittool (but this might be problematic)
-- Silent layer removal etc. - right now we get warnings, but we could also just select the next layer when removing the active layer. 
 - Make the 2nd call of F1, F2 and F3 hide the axis (better solution than just removing the shortcuts)
 - (Maybe) have arrow keys in duplicate tool also work along the size grid (including shift? I think shift is not supported in tools)
 - One could think to make Ctrl+Shift+A first switch to the layer of the current selection (if there is one). Similarily, Ctrl+Shift+C should also pick the layer? Or, Ctrl+Space should also pick properties. 
