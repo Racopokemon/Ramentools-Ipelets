@@ -128,8 +128,8 @@ function _G.MODEL:layeraction_lock(layer, arg)
   self:setPage()
 end
 
--- injecting a better creation 
--- if theres any enabled layer, place there instead. 
+-- injecting silent creation 
+-- if theres any enabled layer, place there instead & activate
 -- If there is none, make layer visible first. 
 function _G.MODEL:creation(label, obj)
   local p = self:page()

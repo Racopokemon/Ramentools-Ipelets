@@ -2,6 +2,7 @@
 - Make A unselect everything and then select everything, Blender style
 - One could group multiple consecutive arrow movements in the undo history, would actually be very clever
 - Make poly-tool remove not needed verts, if theres multiple in a row. On finish, so also between start and end
+- I'd like to have A and A, A select all and nothing, like in blender. 
 - Edittool - how hard is it to modify it?
     - Better way to create verts. Best would be to click anywhere on the line using snap. But, well. 
     - Make the shortcut for cycling between grid-sizes also work in edittool (but this might be problematic)
