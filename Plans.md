@@ -2,14 +2,13 @@
 - Make A unselect everything and then select everything, Blender style
 - One could group multiple consecutive arrow movements in the undo history, would actually be very clever
 - Make poly-tool remove not needed verts, if theres multiple in a row. On finish, so also between start and end
-- I'd like to have A and A, A select all and nothing, like in blender. 
 - Edittool - how hard is it to modify it?
     - Better way to create verts. Best would be to click anywhere on the line using snap. But, well. 
     - Make the shortcut for cycling between grid-sizes also work in edittool (but this might be problematic)
 - Make the 2nd call of F1, F2 and F3 hide the axis (better solution than just removing the shortcuts)
 - (Maybe) have arrow keys in duplicate tool also work along the size grid (including shift? I think shift is not supported in tools)
 - One could think to make Ctrl+Shift+A first switch to the layer of the current selection (if there is one). Similarily, Ctrl+Shift+C should also pick the layer? Or, Ctrl+Space should also pick properties. 
-    - Make Ctrl+Shift+Space select current layer and pick properties
+- Context menu: Shift 5 should display (if only shape selected that has no fill but line) menu for outline transparency. Similarily for Ctrl Shift 5 if only fill. 
 - Right now I am missing a "pick all with same properties" that might be placed at Shift+Alt+A - but this is not that easy. Should we compare all properties? Also filled and unfilled? Texts, Paragraphs and Marks are separate classes, probably. Maybe go several stages, if there is no other mark exactly the same, select all marks? If there are no other texts of same color, select all texts? ...
     - There is a preinstalled ipelet that selects all of same kind? Check it out first!
 - The quickmenu sorts entries by values and indicates (with a >) the current value. Turns out you CAN edit the context menu in the properties.lua <- apply these fixes also there! 
