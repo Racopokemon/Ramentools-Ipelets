@@ -1,5 +1,6 @@
 ## Future work
-- Make A unselect everything and then select everything, Blender style
+- (Could we include in a way that A also saves/restores the last selection? If there was nothing else in between? - maybe you can grab that from the last undo step that saves the last selection? Or does it feel wrong like this? At least it cant crash like this. -> Maybe make it Shift+S for now.)
+- Later: See if it makes sense that pressing S always unselects everything, and a 2nd hit restores the last selection, if there was any. 
 - One could group multiple consecutive arrow movements in the undo history, would actually be very clever
 - Make poly-tool remove not needed verts, if theres multiple in a row. On finish, so also between start and end
 - Edittool - how hard is it to modify it?

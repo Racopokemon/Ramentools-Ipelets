@@ -38,6 +38,9 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - `Ctrl+Shift+W` opens pen width menu
 - `Ctrl+Shift+D` opens pen dash menu
 
+**selectiontools**
+- Hitting `A` toggles (un)selecting everything, Blender style
+
 **prefs**
 - `Ctrl+Shift+C / V` for picking up and applying styles (replacing `Q` and `Ctrl+Q`)
 - `Ctrl+Click` stretches

@@ -51,6 +51,7 @@ end
 
 ----
 
+-- ppl will probably hate all four of these options, maybe delete em
 prefs.initial.grid_size = 8
 prefs.auto_run_latex = false
 
