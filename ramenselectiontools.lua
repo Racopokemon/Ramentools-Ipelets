@@ -29,7 +29,7 @@ methods = {
   { label = "Toggle select all / none", run = toggle_select_all }
 }
 
-rashortcuts.mode_arc1 = nil --every 2nd time the shortcut is not overwritten without this fix
+shortcuts.mode_arc1 = nil --every 2nd time the shortcut is not overwritten without this fix
 
 -- Shortcut: press A to toggle selection
 shortcuts.ipelet_1_ramenselectiontools = "A"
