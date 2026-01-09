@@ -1,7 +1,9 @@
 ## Future work
+- SUGGESTION for mac: Depending on how it is done exactly in the script, it MIGHT be possible to implement multiple keys for the same command. In the worst case this includes overwriting some of the existing lua files (but maybe even not?) - Just create one garbage dropdown in the ipelets menu, search through the shortcuts and dynamically create an entry. Okay, but this requires that our ipelet is loaded after all other ones. Well. 
 - (Could we include in a way that A also saves/restores the last selection? If there was nothing else in between? - maybe you can grab that from the last undo step that saves the last selection? Or does it feel wrong like this? At least it cant crash like this. -> Maybe make it Shift+S for now.)
 - Later: See if it makes sense that pressing S always unselects everything, and a 2nd hit restores the last selection, if there was any. 
 - When pasting stuff, I did not understand at all why I couldnt stamp. Fix this together with duplicate, that also arraying works etc? Same function etc?
+- Mid click should not duplicate in tool. (Probably same with other tools. With any tool? Can we do that?)
 - One could group multiple consecutive arrow movements in the undo history, would actually be very clever
 - Make poly-tool remove not needed verts, if theres multiple in a row. On finish, so also between start and end
 - Edittool - how hard is it to modify it?

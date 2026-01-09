@@ -54,10 +54,10 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - Forth and back mouse buttons delete objects
 - More snap initially activated
 - Text centered by default
-- Auto-Latex disabled. Compile by saving or pressing `Ctrl+L` (or turn it back on in the 'file' menu)
+- Auto-Latex disabled. Compile by saving or pressing `Ctrl+L` or turn it back on in the 'file' menu
 
 **main.lua**
-- On startup, ipe shows an error message when an ipelet was NOT successfully loaded, instead of just silently crashing
+- On startup, ipe shows a detailled error message when an ipelet was NOT successfully loaded, instead of just silently crashing
 - Recognize 'backspace', 'tab', 'enter' as windows shortcuts
 
 ## Installation
