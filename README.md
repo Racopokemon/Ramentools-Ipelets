@@ -3,7 +3,7 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 
 **arrowkeymove**
 - Move the selection using arrow keys based on the gridsize (`Shift` for 1/4 steps)
-- Change gridsize with `Ctrl+Up / Down`
+- Change gridsize with `+ / -` or `Ctrl+Up / Down`
 - Cycle between elements with `Tab` and `Shift+Tab` (Windows only) and `N` and `Shift+N` (all platforms)
 
 **linestool**
@@ -46,6 +46,7 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - `Ctrl+Shift+C / V` for picking up and applying styles (replacing `Q` and `Ctrl+Q`)
 - `Ctrl+Click` stretches
 - `Ctrl+Shift+S` is save as, `Ctrl+Shift+Y` is style sheets
+- `Space` enters edit mode
 - Disable `F1`, `F2` and `F3`
 - `Ctrl+Tab` and `Ctrl+Shift+Tab` to move between views (`Control` on Mac)
 - `Ctrl+N` opens a new window
