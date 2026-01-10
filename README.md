@@ -40,6 +40,7 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 
 **selectiontools**
 - Hitting `A` toggles (un)selecting everything, Blender style
+- `X` cycles between pathmodes (stroked, filled, both)
 
 **prefs**
 *Probably the most controversal changes, feel free to not include / adapt it to your own preferences*
@@ -52,7 +53,7 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - `Ctrl+N` opens a new window
 - `Ctrl+Shift+I` now just creates a new view, no new layer
 - Grid size 8 by start, instead of 16
-- Forth and back mouse buttons delete objects
+- 'Forward' and 'backward' mouse buttons delete objects
 - More snap initially activated
 - Text centered by default
 - Auto-Latex disabled. Compile by saving or pressing `Ctrl+L` or turn it back on in the 'file' menu
