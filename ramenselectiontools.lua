@@ -56,9 +56,9 @@ function cycle(model, num)
       local modes = {"stroked","strokedfilled","filled"}
       local index = _G.indexOf(pathmode, modes)
       if methods[num].back then
-        index = index%3 + 1
-      else
         index = (index + 1) % 3 + 1
+      else
+        index = index%3 + 1
       end
       model:selector("pathmode", modes[index])
       model.ui:explain("Cycle pathmode")

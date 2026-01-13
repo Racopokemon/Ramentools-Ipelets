@@ -22,6 +22,7 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - Cycle active layer with `Ctrl+Shift+Up / Down`
 - Toggle only active visible / all layers visible with `Ctrl+Shift+Right`
 - Toggle active layer visibility with `Ctrl+Shift+Left`
+- Delete active layer with `Ctrl+Shift+Backspace`
 - Activate layer of selection with `Ctrl+Space`
 - Activate layer of selection & pick properties with `Ctrl+Shift+Space`
 

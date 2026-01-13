@@ -122,13 +122,18 @@ function toggle_layer_solo(model, num)
   model:deselectNotInView() -- actions.lua always calls here -- but shouldnt it come in the redo function?
 end
 
+function delete_layer(model, num)
+  model:layeraction_delete(model:page():active(model.vno))
+end
+
 methods = {
     { label = "Activate Layer of Selection", run = match_layer},
     { label = "Activate Next Layer", run = cycle_layers, back = false},
     { label = "Activate Prev Layer", run = cycle_layers, back = true},
     { label = "Toggle Layer Visibility", run = toggle_layer_vis},
     { label = "Toggle Layer Solo", run = toggle_layer_solo},
-    { label = "Activate Layer & Pick Properties", run = match_layer_and_pick_properties}
+    { label = "Activate Layer & Pick Properties", run = match_layer_and_pick_properties}, 
+    { label = "Delete Active Layer", run = delete_layer},
 }
 
 shortcuts.ipelet_1_ramenlayertools = "Ctrl+ "
@@ -141,3 +146,4 @@ if config.platform == "win" then
 else
   shortcuts.ipelet_6_ramenlayertools = "Ctrl+Shift+ "
 end
+shortcuts.ipelet_7_ramenlayertools = "Ctrl+Shift+backspace"
