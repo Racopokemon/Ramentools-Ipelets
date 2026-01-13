@@ -53,13 +53,14 @@ function cycle(model, num)
     end
 
     if allSame then -- Cycle
-      if pathmode == "stroked" then
-        model:selector("pathmode", "strokedfilled")
-      elseif pathmode == "filled" then
-        model:selector("pathmode", "stroked")
+      local modes = {"stroked","strokedfilled","filled"}
+      local index = _G.indexOf(pathmode, modes)
+      if methods[num].back then
+        index = index%3 + 1
       else
-        model:selector("pathmode", "filled")
+        index = (index + 1) % 3 + 1
       end
+      model:selector("pathmode", modes[index])
       model.ui:explain("Cycle pathmode")
     else -- Unify
       model:selector("pathmode", pathmode)
@@ -71,7 +72,8 @@ end
 
 methods = {
   { label = "Toggle select all / none", run = toggle_select_all },
-  { label = "Cycle fill/stroke/both", run = cycle }
+  { label = "Cycle fill/stroke/both", run = cycle, back=false },
+  { label = "Cycle fill/stroke/both (backwards)", run = cycle, back=true }
 }
 
 shortcuts.mode_arc1 = nil --every 2nd time the shortcut is not overwritten without this fix
@@ -80,3 +82,4 @@ shortcuts.pan_here = nil
 -- Shortcut: press A to toggle selection
 shortcuts.ipelet_1_ramenselectiontools = "A"
 shortcuts.ipelet_2_ramenselectiontools = "X"
+shortcuts.ipelet_3_ramenselectiontools = "Shift+X"

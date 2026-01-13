@@ -40,7 +40,7 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 
 **selectiontools**
 - Hitting `A` toggles (un)selecting everything, Blender style
-- `X` cycles between pathmodes (stroked, filled, both)
+- `X` and `Shift+X` cycle between pathmodes (stroked, filled, both)
 
 **prefs**
 *Probably the most controversal changes, feel free to not include / adapt it to your own preferences*
