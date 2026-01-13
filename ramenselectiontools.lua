@@ -70,10 +70,15 @@ function cycle(model, num)
   end
 end
 
+function edit_mode(model, num)
+  model:action("edit")
+end
+
 methods = {
   { label = "Toggle select all / none", run = toggle_select_all },
   { label = "Cycle fill/stroke/both", run = cycle, back=false },
-  { label = "Cycle fill/stroke/both (backwards)", run = cycle, back=true }
+  { label = "Cycle fill/stroke/both (backwards)", run = cycle, back=true },
+  { label = "Enter edit mode (copy)", run = edit_mode }
 }
 
 shortcuts.mode_arc1 = nil --every 2nd time the shortcut is not overwritten without this fix
@@ -83,3 +88,4 @@ shortcuts.pan_here = nil
 shortcuts.ipelet_1_ramenselectiontools = "A"
 shortcuts.ipelet_2_ramenselectiontools = "X"
 shortcuts.ipelet_3_ramenselectiontools = "Shift+X"
+shortcuts.ipelet_4_ramenselectiontools = " "

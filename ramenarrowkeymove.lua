@@ -159,7 +159,6 @@ methods = {
     { label = "Next Grid Size (copy)", run = change_gridsize, back = false},
     { label = "Prev Grid Size (copy)", run = change_gridsize, back = true},
 --    { label = "Test command", run = test},
-    { label = "Enter edit mode (copy)", run = edit_mode}
 }
 
 shortcuts.ipelet_1_ramenarrowkeymove = "Ctrl+Up"
@@ -187,7 +186,5 @@ shortcuts.ipelet_14_ramenarrowkeymove = "Shift+N"
 shortcuts.ipelet_15_ramenarrowkeymove = "+"
 shortcuts.ipelet_16_ramenarrowkeymove = "-"
 shortcuts.fit_width = nil; --was "-"
-
-shortcuts.ipelet_17_ramenarrowkeymove = " "
 
 --shortcuts.ipelet_11_ramenarrowkeymove = "Ctrl+Shift+K" --that test one only

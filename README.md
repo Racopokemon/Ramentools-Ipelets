@@ -42,6 +42,7 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 **selectiontools**
 - Hitting `A` toggles (un)selecting everything, Blender style
 - `X` and `Shift+X` cycle between pathmodes (stroked, filled, both)
+- `Space` also enters edit mode
 
 **prefs**
 *Probably the most controversal changes, feel free to not include / adapt it to your own preferences*
