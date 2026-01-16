@@ -1,5 +1,4 @@
 ## Future work
-- SUGGESTION for mac: Depending on how it is done exactly in the script, it MIGHT be possible to implement multiple keys for the same command. In the worst case this includes overwriting some of the existing lua files (but maybe even not?) - Just create one garbage dropdown in the ipelets menu, search through the shortcuts and dynamically create an entry. Okay, but this requires that our ipelet is loaded after all other ones. Well. 
 - (Could we include in a way that A also saves/restores the last selection? If there was nothing else in between? - maybe you can grab that from the last undo step that saves the last selection? Or does it feel wrong like this? At least it cant crash like this. -> Maybe make it Shift+S for now.)
 - Later: See if it makes sense that pressing S always unselects everything, and a 2nd hit restores the last selection, if there was any. 
 - When pasting stuff, I did not understand at all why I couldnt stamp. Fix this together with duplicate, that also arraying works etc? Same function etc?
@@ -12,7 +11,7 @@
 - Make the 2nd call of F1, F2 and F3 hide the axis (better solution than just removing the shortcuts)
 - (Maybe) have arrow keys in duplicate tool also work along the size grid (including shift? I think shift is not supported in tools)
 - One could think to make Ctrl+Shift+A first switch to the layer of the current selection (if there is one). Similarily, Ctrl+Shift+C should also pick the layer? Or, Ctrl+Space should also pick properties. 
-- Un-assign the X button, maybe
+- Make ctrl-shift-N already select the new layer!
 - One could slightly modify the "flip", "rotate" and "scale" goodie scripts to not only work with selections. Instead, if nothing is selected, it is applied to everything / everything is selected before the dialog opens or the action is applied
 - Context menu: Shift 5 should display (if only shape selected that has no fill but line) menu for outline transparency. Similarily for Ctrl Shift 5 if only fill. 
 - Right now I am missing a "pick all with same properties" that might be placed at Shift+Alt+A - but this is not that easy. Should we compare all properties? Also filled and unfilled? Texts, Paragraphs and Marks are separate classes, probably. Maybe go several stages, if there is no other mark exactly the same, select all marks? If there are no other texts of same color, select all texts? ...
