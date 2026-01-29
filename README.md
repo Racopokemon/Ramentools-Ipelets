@@ -25,6 +25,7 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - Delete active layer with `Ctrl+Shift+Backspace`
 - Activate layer of selection with `Ctrl+Space`
 - Activate layer of selection & pick properties with `Ctrl+Shift+Space`
+- New layers are now focussed and enabled when created
 
 **silentactions**
 - Silently deleting layers: If the layer was active in some views, it is silently changed to a different view before deleting (instead of showing an error message)

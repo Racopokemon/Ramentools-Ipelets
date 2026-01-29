@@ -126,6 +126,29 @@ function delete_layer(model, num)
   model:layeraction_delete(model:page():active(model.vno))
 end
 
+-- Override new layer creation to make it active and visible immediately
+function _G.MODEL:action_new_layer()
+  local t = { label="new layer",
+        pno = self.pno,
+        vno = self.vno,
+        originalActive = self:page():active(self.vno),
+      }
+  t.redo = function (t, doc)
+       local p = doc[t.pno]
+       t.layer = p:addLayer()
+       p:setVisible(t.vno, t.layer, true)
+       p:setActive(t.vno, t.layer)
+     end
+  t.undo = function (t, doc)
+       local p = doc[t.pno]
+       if t.originalActive then
+         p:setActive(t.vno, t.originalActive)
+       end
+       p:removeLayer(t.layer)
+     end
+  self:register(t)
+end
+
 methods = {
     { label = "Activate Layer of Selection", run = match_layer},
     { label = "Activate Next Layer", run = cycle_layers, back = false},

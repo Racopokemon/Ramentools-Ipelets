@@ -59,13 +59,12 @@
 
 ## Guardrails (what not to do)
 - Do **not** modify Ipe’s C++ code; this repo is only for ipelets.
-- Avoid editing internal Ipe Lua scripts unless absolutely required (use `replace in lua-directory/` only if there is no ipelet solution).
-- Keep changes minimal and consistent with existing behavior; don’t refactor unrelated code.
+- Avoid editing internal Ipe Lua scripts unless absolutely required (use `replace in lua-directory/` only if there is no ipelet solution, talk back to the programmer before you do that).
+- Keep changes consistent with existing behavior; don’t refactor unrelated code. 
 
 ## When you add or change features
-- Update `README.md` so shortcuts and behavior remain accurate.
+- Update `README.md` so that also the new features are documented/mentioned properly. 
 - Consider adding notes to `Plans.md` if the change impacts future ideas.
-- Prefer small, focused ipelets instead of one monolith.
 
 ## Quick reference: install paths
 - macOS: `~/.ipe/ipelets/`
