@@ -17,7 +17,8 @@
 - Each page has an **active layer** per view.
 - **Layers are not z‑order**. Z‑order is separate; every object belongs to a layer, which controls visibility only.
 - **Undo/redo** is central: most operations should be wrapped in a `model:register(t)` with `t.undo/t.redo`.
-- **Selection changes are NOT undoable** (do not expect selection-only actions to be in the undo stack).
+- **Selection changes are not undoable** (do not expect selection-only actions to be in the undo stack).
+- Shapes are either stroked, filled, or both (strokefilled)
 
 ## How ipelets work (patterns in this repo)
 - Most ipelets define `label`, `about`, `methods`, and register shortcuts (see `ramenlayertools.lua`).

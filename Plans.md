@@ -11,9 +11,7 @@
 - Make the 2nd call of F1, F2 and F3 hide the axis (better solution than just removing the shortcuts)
 - (Maybe) have arrow keys in duplicate tool also work along the size grid (including shift? I think shift is not supported in tools)
 - One could think to make Ctrl+Shift+A first switch to the layer of the current selection (if there is one). Similarily, Ctrl+Shift+C should also pick the layer? Or, Ctrl+Space should also pick properties. 
-- Make ctrl-shift-N already select the new layer! (And make it vis initially)
 - One could slightly modify the "flip", "rotate" and "scale" goodie scripts to not only work with selections. Instead, if nothing is selected, it is applied to everything / everything is selected before the dialog opens or the action is applied
-- Context menu: Shift 5 should display (if only shape selected that has no fill but line) menu for outline transparency. Similarily for Ctrl Shift 5 if only fill. 
 - Right now I am missing a "pick all with same properties" that might be placed at Shift+Alt+A - but this is not that easy. Should we compare all properties? Also filled and unfilled? Texts, Paragraphs and Marks are separate classes, probably. Maybe go several stages, if there is no other mark exactly the same, select all marks? If there are no other texts of same color, select all texts? ...
     - There is a preinstalled ipelet that selects all of same kind? Check it out first!
 - The quickmenu sorts entries by values and indicates (with a >) the current value. Turns out you CAN edit the context menu in the properties.lua <- apply these fixes also there! 

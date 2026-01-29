@@ -64,8 +64,37 @@ end
 
 function attribute_menu(model, num)
     attr = methods[num].attr
-    name_in_sheet = attr
-    if attr == "strokeopacity" then name_in_sheet = "opacity" end
+    -- secret feature: if none of the selected shapes currently has a fill (or strokefilled), set the line opacity instead. Equally, when setting the line opacity where nothing in the selection is stroked (or strokefilled), set the opaticy instead: 
+    local use_attr = attr
+
+    if attr == "opacity" or attr == "strokeopacity" then
+        local p = model:page()
+        local selection = model:selection()
+        local has_fill = false
+        local has_stroke = false
+        for _, index in ipairs(selection) do
+            local pm = p[index]:get("pathmode")
+            if pm and pm ~= "undefined" then
+                if pm == "filled" then
+                    has_fill = true
+                elseif pm == "stroked" then
+                    has_stroke = true
+                elseif pm == "strokedfilled" then
+                    has_fill = true
+                    has_stroke = true
+                end
+            end
+        end
+
+        if attr == "opacity" and not has_fill and has_stroke then
+            use_attr = "strokeopacity"
+        elseif attr == "strokeopacity" and not has_stroke and has_fill then
+            use_attr = "opacity"
+        end
+    end
+
+    name_in_sheet = use_attr
+    if use_attr == "strokeopacity" then name_in_sheet = "opacity" end
 
     -- Get the current attributes and available values from the style sheets
     local sheet = model.doc:sheets()
@@ -87,7 +116,7 @@ function attribute_menu(model, num)
         return
     end
 
-    local current_value = model:page()[prim]:get(attr)
+    local current_value = model:page()[prim]:get(use_attr)
 
     if attr == "tiling" then
         table.insert(values, 1, "normal")
@@ -110,7 +139,7 @@ function attribute_menu(model, num)
     local item = m:execute(math.floor(x), math.floor(y))
     if item and item ~= nil then
         -- Set the attribute for the selection
-        model:selector(attr, item)
+        model:selector(use_attr, item)
     end
 end
 
