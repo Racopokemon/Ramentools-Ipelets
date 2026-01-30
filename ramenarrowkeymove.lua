@@ -49,6 +49,7 @@ end
 -- end copypasta
     
 -- copypasta from ipelet move.lua, but better grid size
+-- and with movement merging to reduce undo steps
 revertOriginal = _G.revertOriginal
 function mov(model, num)
   local p = model:page()
@@ -74,21 +75,56 @@ function mov(model, num)
     return
   end
 
-  local t = { label = "move by (" .. dx .. ", " .. dy .. ")",
-	      pno = model.pno,
-	      vno = model.vno,
-	      selection = model:selection(),
-	      original = model:page():clone(),
-	      matrix = ipe.Matrix(1, 0, 0, 1, dx, dy),
-	      undo = revertOriginal,
-	    }
-  t.redo = function (t, doc)
-	     local p = doc[t.pno]
-	     for _,i in ipairs(t.selection) do p:transform(i, t.matrix) end
-	   end
-  model:register(t)
+  local selection = model:selection()
+  local matrix = ipe.Matrix(1, 0, 0, 1, dx, dy)
+  
+  -- Check if we can merge with the last undo action
+  local last_undo = #model.undo > 0 and model.undo[#model.undo] or nil
+  local can_merge = false
+  
+  if last_undo and last_undo._is_movement and 
+     last_undo.pno == model.pno and 
+     last_undo.vno == model.vno then
+    -- Check if selection is the same
+    local same_selection = #last_undo.selection == #selection
+    if same_selection then
+      for i, idx in ipairs(selection) do
+        if last_undo.selection[i] ~= idx then
+          same_selection = false
+          break
+        end
+      end
+    end
+    can_merge = same_selection
+  end
+
+  if can_merge then
+    -- Merge with last movement: multiply the matrices
+    local new_matrix = last_undo.matrix * matrix
+    -- Update redo to move from start to accumulated pos
+    last_undo.matrix = new_matrix
+    -- Manually apply the new transform w/o registering undo or calling redo
+    for _,i in ipairs(selection) do p:transform(i, matrix) end
+    model.ui:explain("move by (" .. dx .. ", " .. dy .. ")")
+  else
+    -- Create new undo action
+    local t = { label = "move by (" .. dx .. ", " .. dy .. ")",
+        pno = model.pno,
+        vno = model.vno,
+        selection = selection,
+        original = model:page():clone(),
+        matrix = matrix,
+        undo = revertOriginal,
+        _is_movement = true,  -- marker for movement actions
+      }
+    t.redo = function (t, doc)
+       local p = doc[t.pno]
+       for _,i in ipairs(t.selection) do p:transform(i, t.matrix) end
+    end
+    model:register(t)
+  end
 end
-----
+
 
 function test(model, num)
     model.ui:explain("test run!")

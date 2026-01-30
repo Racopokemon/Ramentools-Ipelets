@@ -3,7 +3,6 @@
 - Later: See if it makes sense that pressing S always unselects everything, and a 2nd hit restores the last selection, if there was any. 
 - When pasting stuff, I did not understand at all why I couldnt stamp. Fix this together with duplicate, that also arraying works etc? Same function etc?
 - Mid click should not duplicate in tool. (Probably same with other tools. With any tool? Can we do that?)
-- One could group multiple consecutive arrow movements in the undo history, would actually be very clever
 - Make poly-tool remove not needed verts, if theres multiple in a row. On finish, so also between start and end
 - Edittool - how hard is it to modify it?
     - Better way to create verts. Best would be to click anywhere on the line using snap. But, well. 
