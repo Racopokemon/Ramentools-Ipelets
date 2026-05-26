@@ -3,6 +3,7 @@
 ------------------------------------------------------------
 -- Toggle select all / nothing with the A key
 -- Cycle pathmode with X
+-- Cycle arrows with W
 ------------------------------------------------------------
 
 -- Place this file in ...
@@ -38,7 +39,7 @@ function cycle(model, num)
   local pathmode = p[prim]:get("pathmode")
   if pathmode and pathmode ~= "undefined" then
     local selection = model:selection()
-    --pls implement. You'll need this: 
+    --pls implement (as you see below, it worked nicely). You'll need this: 
     --selection is an array of indices, access object property with p[index]:get("pathmode"). Note that not every element in the selection supports pathmode, so you need to check for it as seen in the if check above :)
     --model:selector("pathmode","filled") <- this magical command already applies the property to the entire selection (if the property exists) and handles the undo/redo registration. 
     --_G.indexOf(model.snap.gridsize, gridsizes) is the general indexof implementation
@@ -46,7 +47,7 @@ function cycle(model, num)
     local allSame = true
     for _, index in ipairs(selection) do
       local pm = p[index]:get("pathmode")
-      if pm and pm ~= pathmode then
+      if pm and pm ~= "undefined" and pm ~= pathmode then
         allSame = false
         break
       end
@@ -70,6 +71,68 @@ function cycle(model, num)
   end
 end
 
+-- Cycles between the four possible combinations of front and rear arrow enabled, in the order none <-> front <-> rear <-> both <-> ...
+-- multi-selection: Applies the combination of primary selection the to rest of the selection, if some of them differ. If they all match already, cycles
+function cycleArrow(model, num)
+  local p = model:page()
+  if not p:hasSelection() then
+    model.ui:explain("No selection")
+    return
+  end
+
+  local prim = p:primarySelection()
+  local primObj = p[prim]
+  local farrow = primObj:get("farrow")
+  local rarrow = primObj:get("rarrow")
+
+  if primObj:type() == "path" and farrow ~= nil and rarrow ~= nil then
+    local selection = model:selection()
+    local allSame = true
+
+    for _, index in ipairs(selection) do
+      local obj = p[index]
+      if obj:type() == "path" then
+        local objFarrow = obj:get("farrow")
+        local objRarrow = obj:get("rarrow")
+        if objFarrow ~= nil and objRarrow ~= nil and (objFarrow ~= farrow or objRarrow ~= rarrow) then
+          allSame = false
+          break
+        end
+      end
+    end
+
+    if allSame then
+      local states = {
+        { false, false },
+        { true, false },
+        { false, true },
+        { true, true }
+      }
+      local stateIndex = 1
+      for i, state in ipairs(states) do
+        if state[1] == farrow and state[2] == rarrow then
+          stateIndex = i
+          break
+        end
+      end
+
+      if methods[num].back then
+        stateIndex = (stateIndex + 2) % 4 + 1
+      else
+        stateIndex = stateIndex % 4 + 1
+      end
+
+      model:selector("farrow", tostring(states[stateIndex][1]))
+      model:selector("rarrow", tostring(states[stateIndex][2]))
+      model.ui:explain("Cycle arrows")
+    else
+      model:selector("farrow", tostring(farrow))
+      model:selector("rarrow", tostring(rarrow))
+      model.ui:explain("Unify arrows to primary selection")
+    end
+  end
+end
+
 function edit_mode(model, num)
   model:action("edit")
 end
@@ -78,6 +141,8 @@ methods = {
   { label = "Toggle select all / none", run = toggle_select_all },
   { label = "Cycle fill/stroke/both", run = cycle, back=false },
   { label = "Cycle fill/stroke/both (backwards)", run = cycle, back=true },
+  { label = "Cycle front/back arrows", run = cycleArrow, back=false },
+  { label = "Cycle front/back arrows (backwards)", run = cycleArrow, back=true },
   { label = "Enter edit mode (copy)", run = edit_mode }
 }
 
@@ -88,4 +153,6 @@ shortcuts.pan_here = nil
 shortcuts.ipelet_1_ramenselectiontools = "A"
 shortcuts.ipelet_2_ramenselectiontools = "X"
 shortcuts.ipelet_3_ramenselectiontools = "Shift+X"
-shortcuts.ipelet_4_ramenselectiontools = " "
+shortcuts.ipelet_4_ramenselectiontools = "W"
+shortcuts.ipelet_5_ramenselectiontools = "Shift+W"
+shortcuts.ipelet_6_ramenselectiontools = " "
