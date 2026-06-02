@@ -4,6 +4,7 @@
 -- Toggle select all / nothing with the A key
 -- Cycle pathmode with X
 -- Cycle arrows with W
+-- Double click to edit anything
 ------------------------------------------------------------
 
 -- Place this file in ...
@@ -134,7 +135,31 @@ function cycleArrow(model, num)
 end
 
 function edit_mode(model, num)
-  model:action("edit")
+  model:action("edit") -- you have to just know that this actually works, lucky guess
+end
+
+-----
+-- hacking double click being recognized and entering edit mode. 
+-- The better way, if were to modify tools.lua directly, 
+-- to easily integrate double clicks as programmable trigger like shift etc. 
+-- Here, it would also easily be possible to register "edit" as action to be bound to any (modified) mouse button
+
+originalMouseButtonActionFun = _G.MODEL.mouseButtonAction
+-- Injecting a modded version of this original call, feelin hacky today
+function _G.MODEL:mouseButtonAction(button, modifiers)
+  if button == 0x81 then -- left double-click
+    modifiers["double"] = true
+  end
+  originalMouseButtonActionFun(self, button, modifiers)
+end
+
+originalstartModeToolFun = _G.MODEL.startModeTool
+function _G.MODEL:startModeTool(modifiers)
+  if self.mode == "select" and modifiers.double then
+    self:action("edit")
+  else
+    originalstartModeToolFun(self, modifiers)
+  end
 end
 
 methods = {
