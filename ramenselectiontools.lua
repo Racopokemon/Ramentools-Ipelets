@@ -40,7 +40,7 @@ function cycle(model, num)
   local pathmode = p[prim]:get("pathmode")
   if pathmode and pathmode ~= "undefined" then
     local selection = model:selection()
-    --pls implement (as you see below, it worked nicely). You'll need this: 
+    --pls implement from here. You'll need this: 
     --selection is an array of indices, access object property with p[index]:get("pathmode"). Note that not every element in the selection supports pathmode, so you need to check for it as seen in the if check above :)
     --model:selector("pathmode","filled") <- this magical command already applies the property to the entire selection (if the property exists) and handles the undo/redo registration. 
     --_G.indexOf(model.snap.gridsize, gridsizes) is the general indexof implementation
@@ -123,8 +123,8 @@ function cycleArrow(model, num)
         stateIndex = stateIndex % 4 + 1
       end
 
-      model:selector("farrow", tostring(states[stateIndex][1]))
-      model:selector("rarrow", tostring(states[stateIndex][2]))
+      model:selector("farrow", states[stateIndex][1])
+      model:selector("rarrow", states[stateIndex][2])
       model.ui:explain("Cycle arrows")
     else
       model:selector("farrow", tostring(farrow))
@@ -139,9 +139,10 @@ function edit_mode(model, num)
 end
 
 -----
--- hacking double click being recognized and entering edit mode. 
--- The better way, if were to modify tools.lua directly, 
+-- hacking double click being recognized and entering edit mode once it happens. 
+-- The better way, if were to modify tools.lua directly, would be
 -- to easily integrate double clicks as programmable trigger like shift etc. 
+-- Youll see that it can be directly integrated in tools.lua around line 1300
 -- Here, it would also easily be possible to register "edit" as action to be bound to any (modified) mouse button
 
 originalMouseButtonActionFun = _G.MODEL.mouseButtonAction
