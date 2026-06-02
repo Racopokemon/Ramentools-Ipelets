@@ -46,6 +46,7 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - `X` and `Shift+X` cycle between pathmodes (stroked, filled, both)
 - `W` and `Shift+W` cycle between arrow modes (first hit makes all equal to the primary selection, if different)
 - `Space` and double click also enters edit mode
+- Double click at an empty position enters the polygon mode (can be disabled or changed to any tool in the file)
 
 **prefs**
 *Probably the most controversal changes, feel free to not include / adapt it to your own preferences*

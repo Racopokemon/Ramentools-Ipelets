@@ -6,6 +6,7 @@
 -- Cycle pathmode with X
 -- Cycle arrows with W
 -- Double click to edit anything
+-- Double click empty position to start polyline (can be changed to any tool or disabled)
 ------------------------------------------------------------
 
 -- Place this file in ...
@@ -168,7 +169,15 @@ end
 originalstartModeToolFun = _G.MODEL.startModeTool
 function _G.MODEL:startModeTool(modifiers)
   if self.mode == "select" and modifiers.double then
-    self:action("edit")
+    if self:page():hasSelection() then
+      self:action("edit")
+    else
+      if double_click_mode then
+        self:action(double_click_mode)
+        self.ui:setActionState(double_click_mode, true) --update ui
+        self:mouseButtonAction(1, modifiers)
+      end
+    end
   else
     originalstartModeToolFun(self, modifiers)
   end
@@ -184,6 +193,7 @@ methods = {
   { label = "Enter edit mode (copy)", run = edit_mode }
 }
 
+
 shortcuts.mode_arc1 = nil --every 2nd time the shortcut is not overwritten without this fix
 shortcuts.pan_here = nil
 shortcuts.mode_select = nil
@@ -196,3 +206,7 @@ shortcuts.ipelet_4_ramenselectiontools = "Shift+X"
 shortcuts.ipelet_5_ramenselectiontools = "W"
 shortcuts.ipelet_6_ramenselectiontools = "Shift+W"
 shortcuts.ipelet_7_ramenselectiontools = " "
+
+-- tool to select on double click: 
+-- also possible: nil (disable), or any tool name from shortcuts.lua, like "mode_rectangles1" or "mode_circles1"
+double_click_mode = "mode_lines" 
