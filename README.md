@@ -42,6 +42,7 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 
 **selectiontools**
 - Hitting `A` toggles (un)selecting everything, Blender style
+- `S` (un)selects everything in subsequent presses (first press enters select mode, as before)
 - `X` and `Shift+X` cycle between pathmodes (stroked, filled, both)
 - `W` and `Shift+W` cycle between arrow modes (first hit makes all equal to the primary selection, if different)
 - `Space` and double click also enters edit mode

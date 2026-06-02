@@ -2,6 +2,7 @@
 -- Ramentools - some quality-of-life improvements for ipe --
 ------------------------------------------------------------
 -- Toggle select all / nothing with the A key
+-- S is select mode (as always), then toggles select all / nothing
 -- Cycle pathmode with X
 -- Cycle arrows with W
 -- Double click to edit anything
@@ -26,6 +27,16 @@ function toggle_select_all(model, num)
     end
   end
   -- model.ui:update(false)
+end
+
+function select_mode_then_toggle_select_all(model, num)
+  if model.mode ~= "select" then
+    model.mode = "select"
+    model.ui:setActionState("mode_select", true)
+  else
+    toggle_select_all(model, num)
+  end
+  model.ui:update()
 end
 
 -- Cycles between the three possible pathmode types "stroked", "strokedfilled", "filled".
@@ -165,6 +176,7 @@ end
 
 methods = {
   { label = "Toggle select all / none", run = toggle_select_all },
+  { label = "Enter select mode, then toggle all / none", run = select_mode_then_toggle_select_all },
   { label = "Cycle fill/stroke/both", run = cycle, back=false },
   { label = "Cycle fill/stroke/both (backwards)", run = cycle, back=true },
   { label = "Cycle front/back arrows", run = cycleArrow, back=false },
@@ -174,11 +186,13 @@ methods = {
 
 shortcuts.mode_arc1 = nil --every 2nd time the shortcut is not overwritten without this fix
 shortcuts.pan_here = nil
+shortcuts.mode_select = nil
 
 -- Shortcut: press A to toggle selection
 shortcuts.ipelet_1_ramenselectiontools = "A"
-shortcuts.ipelet_2_ramenselectiontools = "X"
-shortcuts.ipelet_3_ramenselectiontools = "Shift+X"
-shortcuts.ipelet_4_ramenselectiontools = "W"
-shortcuts.ipelet_5_ramenselectiontools = "Shift+W"
-shortcuts.ipelet_6_ramenselectiontools = " "
+shortcuts.ipelet_2_ramenselectiontools = "S"
+shortcuts.ipelet_3_ramenselectiontools = "X"
+shortcuts.ipelet_4_ramenselectiontools = "Shift+X"
+shortcuts.ipelet_5_ramenselectiontools = "W"
+shortcuts.ipelet_6_ramenselectiontools = "Shift+W"
+shortcuts.ipelet_7_ramenselectiontools = " "
