@@ -93,7 +93,7 @@ function attribute_menu(model, num)
         end
     end
 
-    name_in_sheet = use_attr
+    local name_in_sheet = use_attr
     if use_attr == "strokeopacity" then name_in_sheet = "opacity" end
 
     -- Get the current attributes and available values from the style sheets
@@ -112,11 +112,11 @@ function attribute_menu(model, num)
     local m = ipeui.Menu(model.ui:win())
 
     local prim = model:page():primarySelection()
-    if not prim then
-        return
+    local current_value = model.attributes[use_attr] -- fallback for no selection: attribute
+    if prim then
+        current_value = model:page()[prim]:get(use_attr)
     end
 
-    local current_value = model:page()[prim]:get(use_attr)
 
     if attr == "tiling" then
         table.insert(values, 1, "normal")
