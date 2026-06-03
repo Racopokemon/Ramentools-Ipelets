@@ -67,8 +67,8 @@ function attribute_menu(model, num)
     -- secret feature: if none of the selected shapes currently has a fill (or strokefilled), set the line opacity instead. Equally, when setting the line opacity where nothing in the selection is stroked (or strokefilled), set the opaticy instead: 
     local use_attr = attr
 
-    if attr == "opacity" or attr == "strokeopacity" then
-        local p = model:page()
+    local p = model:page()
+    if p:primarySelection() and (attr == "opacity" or attr == "strokeopacity") then
         local selection = model:selection()
         local has_fill = false
         local has_stroke = false
@@ -111,10 +111,10 @@ function attribute_menu(model, num)
 
     local m = ipeui.Menu(model.ui:win())
 
-    local prim = model:page():primarySelection()
+    local prim = p:primarySelection()
     local current_value = model.attributes[use_attr] -- fallback for no selection: attribute
     if prim then
-        current_value = model:page()[prim]:get(use_attr)
+        current_value = p[prim]:get(use_attr)
     end
 
 
