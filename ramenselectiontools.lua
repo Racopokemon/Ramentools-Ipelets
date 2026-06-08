@@ -27,7 +27,6 @@ function toggle_select_all(model, num)
         model.ui:explain("Selected all")
     end
   end
-  -- model.ui:update(false)
 end
 
 function select_mode_then_toggle_select_all(model, num)
@@ -168,7 +167,7 @@ end
 -- Youll see that it can be directly integrated in tools.lua around line 1300
 -- Here, it would also easily be possible to register "edit" as action to be bound to any (modified) mouse button
 
-originalMouseButtonActionFun = _G.MODEL.mouseButtonAction
+local originalMouseButtonActionFun = _G.MODEL.mouseButtonAction
 -- Injecting a modded version of this original call, feelin hacky today
 function _G.MODEL:mouseButtonAction(button, modifiers)
   if button == 0x81 then -- left double-click
@@ -177,7 +176,7 @@ function _G.MODEL:mouseButtonAction(button, modifiers)
   originalMouseButtonActionFun(self, button, modifiers)
 end
 
-originalstartModeToolFun = _G.MODEL.startModeTool
+local originalStartModeToolFun = _G.MODEL.startModeTool
 function _G.MODEL:startModeTool(modifiers)
   if self.mode == "select" and modifiers.double then
     if self:page():hasSelection() then
@@ -190,7 +189,7 @@ function _G.MODEL:startModeTool(modifiers)
       end
     end
   else
-    originalstartModeToolFun(self, modifiers)
+    originalStartModeToolFun(self, modifiers)
   end
 end
 
