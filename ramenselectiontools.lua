@@ -3,8 +3,9 @@
 ------------------------------------------------------------
 -- Toggle select all / nothing with the A key
 -- S is select mode (as always), then toggles select all / nothing
--- Cycle pathmode with X
--- Cycle arrows with W
+-- Cycle pathmode with (Shift+) X
+-- Cycle arrows with (Shift+) W
+-- Cycle mark types with (Shift+) M (M enters mark mode, first)
 -- Double click to edit anything
 -- Double click empty position to start polyline (can be changed to any tool or disabled)
 ------------------------------------------------------------
@@ -36,7 +37,7 @@ function select_mode_then_toggle_select_all(model, num)
   else
     toggle_select_all(model, num)
   end
-  model.ui:update()
+  --model.ui:update()
 end
 
 -- Cycles between the three possible pathmode types "stroked", "strokedfilled", "filled".
@@ -95,8 +96,8 @@ function cycleArrow(model, num)
     local states = {
       { false, false },
       { true, false },
-      { false, true },
-      { true, true }
+      { true, true }, 
+      { false, true }
     }
     local stateIndex = 1
     for i, state in ipairs(states) do
@@ -193,6 +194,72 @@ function _G.MODEL:startModeTool(modifiers)
   end
 end
 
+-- Cycles between mark types, also usual behaviour for multi-selections.
+function cycleMarks(model, num)
+  -- "mark/disk(sx)" is what is assigned
+
+  local cyc = function (mark, model)
+    local marktypes = listMarks(model)
+    local index = _G.indexOf(mark, marktypes)
+    if not index then index = 1 end
+    if methods[num].back then
+      index = (index + #marktypes - 2) % #marktypes + 1
+    else
+      index = index%#marktypes + 1
+    end
+    model:selector("markshape", string.sub(marktypes[index], 6))
+    model.ui:explain("Cycle mark type")
+    --model.ui:explain()
+  end
+
+  local p = model:page()
+  if not p:hasSelection() then
+    cyc(model.attributes["markshape"], model)
+  else
+    local prim = p:primarySelection()
+    local mark = p[prim]:get("markshape")
+    if mark and mark ~= "undefined" then
+      local selection = model:selection()      
+      local allSame = true
+      for _, index in ipairs(selection) do
+        local ms = p[index]:get("markshape")
+        if ms and ms ~= "undefined" and ms ~= mark then
+          allSame = false
+          break
+        end
+      end
+
+      if allSame then -- Cycle
+        cyc(mark, model)
+      else -- Unify
+        model:selector("markshape", string.sub(mark, 6))
+        model.ui:explain("Unify mark type to primary selection")
+      end
+    end
+  end
+end
+
+function listMarks(model)
+  local symbols = model.doc:sheets():allNames("symbol")
+  local lst = {}
+  for _, name in ipairs(symbols) do
+    if name:match("^mark/") then
+      lst[#lst + 1] = name
+    end
+  end
+  return lst
+end
+
+function markModeOrCycle(model, num)
+  if model.mode ~= "marks" then
+    model.mode = "marks"
+    model.ui:setActionState("mode_marks", true)
+  else
+    cycleMarks(model, num)
+  end
+end
+
+
 methods = {
   { label = "Toggle select all / none", run = toggle_select_all },
   { label = "Enter select mode, then toggle all / none", run = select_mode_then_toggle_select_all },
@@ -200,6 +267,8 @@ methods = {
   { label = "Cycle fill/stroke/both (backwards)", run = cycle, back=true },
   { label = "Cycle front/back arrows", run = cycleArrow, back=false },
   { label = "Cycle front/back arrows (backwards)", run = cycleArrow, back=true },
+  { label = "Draw / cycle marks", run = markModeOrCycle, back=false },
+  { label = "Cycle marks (backwards)", run = markModeOrCycle, back=true },
   { label = "Enter edit mode (copy)", run = edit_mode }
 }
 
@@ -207,6 +276,7 @@ methods = {
 shortcuts.mode_arc1 = nil --every 2nd time the shortcut is not overwritten without this fix
 shortcuts.pan_here = nil
 shortcuts.mode_select = nil
+shortcuts.mode_marks = nil
 
 -- Shortcut: press A to toggle selection
 shortcuts.ipelet_1_ramenselectiontools = "A"
@@ -215,7 +285,9 @@ shortcuts.ipelet_3_ramenselectiontools = "X"
 shortcuts.ipelet_4_ramenselectiontools = "Shift+X"
 shortcuts.ipelet_5_ramenselectiontools = "W"
 shortcuts.ipelet_6_ramenselectiontools = "Shift+W"
-shortcuts.ipelet_7_ramenselectiontools = " "
+shortcuts.ipelet_7_ramenselectiontools = "M"
+shortcuts.ipelet_8_ramenselectiontools = "Shift+M"
+shortcuts.ipelet_9_ramenselectiontools = " "
 
 -- tool to select on double click: 
 -- also possible: nil (disable), or any tool name from shortcuts.lua, like "mode_rectangles1" or "mode_circles1"

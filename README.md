@@ -44,7 +44,9 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - Hitting `A` toggles (un)selecting everything, Blender style
 - `S` (un)selects everything in subsequent presses (first press enters select mode, as before)
 - `X` and `Shift+X` cycle between pathmodes (stroked, filled, both)
-- `W` and `Shift+W` cycle between arrow modes (first hit makes all equal to the primary selection, if different)
+- `W` and `Shift+W` cycle between arrow modes
+- `M` and `Shift+M` cycle between mark types, M enters mark mode on first hit
+- (all of these first hit make all equal to the primary selection, if different)
 - `Space` and double click also enters edit mode
 - Double click at an empty position enters the polygon mode (can be disabled or changed to any tool in the file)
 

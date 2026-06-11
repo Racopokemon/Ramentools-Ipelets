@@ -1,6 +1,7 @@
 ## Future work
 - ~~Make W, X, Ctrl+Shift+W / D / %, line% work also without selection, on the current attributes.~~
-- Make hitting M multiple times change the mark symbol. Shift+M always to de-cycle
+- Would the arrow cycle be better to just toggle front with W and back with Shift+W?
+- ~~Make hitting M multiple times change the mark symbol. Shift+M always to de-cycle~~
 - Tbh, would it make sense to revert every tool to selection after use? Rectangles, circles, lines? So many buttons, and the revert is how every other software handles this. And to chain the tool / keep it, one could detect if shift was pressed ...
 - (Could we include in a way that A also saves/restores the last selection? If there was nothing else in between? - maybe you can grab that from the last undo step that saves the last selection? Or does it feel wrong like this? At least it cant crash like this. -> Maybe make it Shift+S for now.)
 - ~~Later: See if it makes sense that pressing S always unselects everything, and a 2nd hit restores the last selection, if there was any.~~ 
@@ -10,7 +11,7 @@
 - Edittool - how hard is it to modify it?
     - Better way to create verts. Best would be to click anywhere on the line using snap. But, well. 
     - Make the shortcut for cycling between grid-sizes also work in edittool (but this might be problematic)
-    - double click anywhere closes / accepts
+    - double click anywhere (far away) closes / accepts
 - Make the 2nd press of F1, F2 and F3 hide the axis (better solution than just removing the shortcuts)
 - (Maybe) have arrow keys in duplicate tool also work along the size grid (including shift? I think shift is not supported in tools)
 - One could think to make Ctrl+Shift+A first switch to the layer of the current selection (if there is one). Similarily, Ctrl+Shift+C should also pick the layer? Or, Ctrl+Space should also pick properties. 
