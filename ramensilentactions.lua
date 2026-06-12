@@ -128,7 +128,7 @@ function _G.MODEL:layeraction_lock(layer, arg)
   self:setPage()
 end
 
--- injecting silent creation 
+-- injecting silent creation (with invisible active layer)
 -- if theres any enabled layer, place there instead & activate
 -- If there is none, make layer visible first. 
 function _G.MODEL:creation(label, obj)
@@ -157,4 +157,21 @@ function _G.MODEL:creation(label, obj)
 	     doc[t.pno]:insert(nil, t.object, 1, t.layer)
 	   end
   self:register(t)
+end
+
+-- no warning if edit is called for things that cannot be edited (tbh this is only caused by the newly introduced space and double click actions that don't check for it there)
+function _G.MODEL:action_edit()
+  local p = self:page()
+  local prim = p:primarySelection()
+  if not prim then self.ui:explain("no selection") return end
+  local obj = p[prim]
+  if obj:type() == "text" then
+    self:action_edit_text(prim, obj)
+  elseif obj:type() == "path" then
+    self:action_edit_path(prim, obj)
+  elseif obj:type() == "group" then
+    self:action_edit_group_text(prim, obj)
+  else
+    self.ui:explain("Only text objects, path objects, and groups with text can be edited")
+  end
 end

@@ -31,6 +31,7 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - Silently deleting layers: If the layer was active in some views, it is silently changed to a different view before deleting (instead of showing an error message)
 - Silently locking layers: Analogously, change active views before locking a layer
 - Silently creating shapes: If created on a hidden layer, make the layer visible before creating the shape there
+- (Editing things that can't be edited does not show a warning, but this didn't really occur before the double click and space action in selectiontools)
 
 **quickmenu**
 - `Ctrl+R` opens quick menu for recent files and after that rotate and mirror basics
@@ -55,13 +56,12 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - `Ctrl+Shift+C / V` for picking up and applying styles (replacing `Q` and `Ctrl+Q`)
 - `Ctrl+Click` stretches
 - `Ctrl+Shift+S` is save as, `Ctrl+Shift+Y` is style sheets
-- `Space` enters edit mode
 - Disable `F1`, `F2` and `F3`
 - `Ctrl+Tab` and `Ctrl+Shift+Tab` to move between views (`Control` on Mac)
 - `Ctrl+N` opens a new window
 - `Ctrl+Shift+I` now just creates a new view, no new layer
 - Grid size 8 by start, instead of 16
-- 'Forward' and 'backward' mouse buttons delete objects
+- 'forward' and 'backward' mouse buttons delete objects
 - More snap initially activated
 - Text centered by default
 - Auto-Latex disabled. Compile by saving or pressing `Ctrl+L` or turn it back on in the 'file' menu
