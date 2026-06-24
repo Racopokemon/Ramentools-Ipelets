@@ -73,3 +73,6 @@ function _G.MODEL:setLine(snapping)
   end
   orig_setLine(self, snapping)
 end
+
+function run(model)
+end
