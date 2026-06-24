@@ -24,11 +24,6 @@ shortcuts.ungroup = "Ctrl+Shift+G"
 shortcuts.new_window = "Ctrl+N"
 shortcuts.edit_notes = nil --old ctrl-N command
 
---hardly use it & rather annoying, so disabling these hotkeys
-shortcuts.set_origin = nil    --F1
-shortcuts.set_direction = nil --F2
-shortcuts.set_line = nil      --F3
-
 shortcuts.style_sheets = "Ctrl+Shift+Y"
 shortcuts.save_as = "Ctrl+Shift+S"
 

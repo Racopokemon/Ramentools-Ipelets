@@ -12,7 +12,6 @@
     - Better way to create verts. Best would be to click anywhere on the line using snap. But, well. 
     - Make the shortcut for cycling between grid-sizes also work in edittool (but this might be problematic)
     - double click anywhere (far away) closes / accepts
-- Make the 2nd press of F1, F2 and F3 hide the axis (better solution than just removing the shortcuts)
 - (Maybe) have arrow keys in duplicate tool also work along the size grid (including shift? I think shift is not supported in tools)
 - One could think to make Ctrl+Shift+A first switch to the layer of the current selection (if there is one). Similarily, Ctrl+Shift+C should also pick the layer? Or, Ctrl+Space should also pick properties. 
 - One could slightly modify the "flip", "rotate" and "scale" goodie scripts to not only work with selections. Instead, if nothing is selected, it is applied to everything / everything is selected before the dialog opens or the action is applied

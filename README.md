@@ -56,7 +56,7 @@ Small ipelets that make various quality of life-improvements to the drawing edit
 - `Ctrl+Shift+C / V` for picking up and applying styles (replacing `Q` and `Ctrl+Q`)
 - `Ctrl+Click` stretches
 - `Ctrl+Shift+S` is save as, `Ctrl+Shift+Y` is style sheets
-- Disable `F1`, `F2` and `F3`
+- Smart Toggle for `F1`, `F2` and `F3` (press again at the same position to hide axes)
 - `Ctrl+Tab` and `Ctrl+Shift+Tab` to move between views (`Control` on Mac)
 - `Ctrl+N` opens a new window
 - `Ctrl+Shift+I` now just creates a new view, no new layer
