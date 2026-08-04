@@ -179,7 +179,8 @@ end
 
 local originalStartModeToolFun = _G.MODEL.startModeTool
 function _G.MODEL:startModeTool(modifiers)
-  if self.mode == "select" and modifiers.double then
+  if self.mode == "select" and modifiers.double and not 
+        modifiers.control and not modifiers.shift and not modifiers.command then
     if self:page():hasSelection() then
       self:action("edit")
     else
