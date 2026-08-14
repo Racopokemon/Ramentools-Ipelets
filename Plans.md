@@ -1,5 +1,6 @@
 ## Future work
 - ~~Make W, X, Ctrl+Shift+W / D / %, line% work also without selection, on the current attributes.~~
+- Clicking a locked layer or moving there with ctrl+shift+up/down throws a message. Just make it silent. 
 - Would the arrow cycle be better to just toggle front with W and back with Shift+W?
 - ~~Make hitting M multiple times change the mark symbol. Shift+M always to de-cycle~~
 - Tbh, would it make sense to revert every tool to selection after use? Rectangles, circles, lines? So many buttons, and the revert is how every other software handles this. And to chain the tool / keep it, one could detect if shift was pressed ...
