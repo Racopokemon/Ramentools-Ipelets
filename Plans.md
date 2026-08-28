@@ -3,6 +3,7 @@
 - Clicking a locked layer or moving there with ctrl+shift+up/down throws a message. Just make it silent. 
 - Would the arrow cycle be better to just toggle front with W and back with Shift+W?
 - ~~Make hitting M multiple times change the mark symbol. Shift+M always to de-cycle~~
+- Make arrow keys w/o selection move view according to the grid size?
 - Tbh, would it make sense to revert every tool to selection after use? Rectangles, circles, lines? So many buttons, and the revert is how every other software handles this. And to chain the tool / keep it, one could detect if shift was pressed ...
 - (Could we include in a way that A also saves/restores the last selection? If there was nothing else in between? - maybe you can grab that from the last undo step that saves the last selection? Or does it feel wrong like this? At least it cant crash like this. -> Maybe make it Shift+S for now.)
 - ~~Later: See if it makes sense that pressing S always unselects everything, and a 2nd hit restores the last selection, if there was any.~~ 
