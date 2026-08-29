@@ -1,3 +1,6 @@
+## Bugs
+On windows, space does not enter edit mode :/
+
 ## Future work
 - ~~Make W, X, Ctrl+Shift+W / D / %, line% work also without selection, on the current attributes.~~
 - Clicking a locked layer or moving there with ctrl+shift+up/down throws a message. Just make it silent. 
