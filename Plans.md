@@ -1,5 +1,7 @@
 ## Bugs
-On windows, space does not enter edit mode :/
+- On windows, space does not enter edit mode :/
+- Pressing S for selection (mac) does not re-enable snaps when coming from ink (K)
+- On windows, pressing S does not disable the other tool buttons in the UI
 
 ## Future work
 - ~~Make W, X, Ctrl+Shift+W / D / %, line% work also without selection, on the current attributes.~~
